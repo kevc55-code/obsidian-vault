@@ -1,0 +1,17 @@
+# Obsidian per-machine UI state
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+
+# Scratch awaiting review/deletion — intentionally untracked
+04-Archive/_quarantine/
+
+# Ops tooling does not belong in a notes vault (see ../ops-scripts)
+*.ps1
+*.bat
+*.zip
+
+# Never commit credentials
+.env
+.env.*
+*.key
+*.pem

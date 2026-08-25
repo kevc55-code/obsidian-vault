@@ -1,0 +1,228 @@
+{
+  "main": {
+    "id": "04cda6dab21af465",
+    "type": "split",
+    "children": [
+      {
+        "id": "2a28323c8cd1fc56",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8c4838e4d651082d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "01-Projects/FSBO-Hub/unpushed-changes.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "unpushed-changes"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "94d696c8ad9658cb",
+    "type": "split",
+    "children": [
+      {
+        "id": "3e95925363448aa2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "171a6df930797055",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "1670469d09636831",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "d290417e72a15f6f",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "a121b1c420a8eddd",
+    "type": "split",
+    "children": [
+      {
+        "id": "f137c0dd3b55b272",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bcdc56d51ec57e2e",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "01-Projects/FSBO-Hub/unpushed-changes.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for unpushed-changes"
+            }
+          },
+          {
+            "id": "8734e318382e979c",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "01-Projects/FSBO-Hub/unpushed-changes.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from unpushed-changes"
+            }
+          },
+          {
+            "id": "10a14ddbca9766e2",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "6c75cb4e973e7c19",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "99db4890ebb6a32f",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "01-Projects/FSBO-Hub/unpushed-changes.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of unpushed-changes"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "8c4838e4d651082d",
+  "lastOpenFiles": [
+    "04-Archive/_quarantine/SESSION-OUTPUT.md",
+    "04-Archive/_quarantine/ziLJam3H",
+    "04-Archive/_quarantine/repo-status.txt",
+    "04-Archive/_quarantine/push_results.txt",
+    "04-Archive/_quarantine/push-results.txt",
+    "04-Archive/_quarantine/gh_results.txt",
+    "04-Archive/_quarantine/gh_output.txt",
+    "04-Archive/_quarantine/frbo_files.txt",
+    "04-Archive/_quarantine/frbo_check2.txt",
+    "04-Archive/_quarantine/frbo_check.txt",
+    "04-Archive/_quarantine/fix-repos-result.txt",
+    "01-Projects/FSBO-Hub/SESSION-2026-08-25.md",
+    "01-Projects/FSBO-Hub/SESSION-2026-08-21.md",
+    "01-Projects/FSBO-Hub/SESSION-2026-08-19.md",
+    "01-Projects/FSBO-Hub/SESSION-2026-08-05.md",
+    "01-Projects/FSBO-Hub/seo-remediation-plan-2026-07-27.md",
+    "01-Projects/FSBO-Hub/link-audit-latest.md",
+    "01-Projects/FSBO-Hub/SESSION-2026-07-23.md",
+    "01-Projects/FSBO-Hub/SESSION-2026-07-20.md",
+    "01-Projects/FSBO-Hub/SESSION-2026-07-12.md",
+    "01-Projects/FSBO-Hub/SESSION-2026-07-01.md",
+    "01-Projects/FSBO-Hub/carfax-reply-draft.md",
+    "01-Projects/FSBO-Hub/SESSION-2026-06-29.md",
+    "01-Projects/FSBO-Hub/broken-links-audit-2026-06-29.md",
+    "01-Projects/FSBO-Hub/SESSION-2026-06-27.md",
+    "01-Projects/FSBO-Hub/SESSION-2026-06-26.md",
+    "01-Projects/FSBO-Hub/fsbo-hub-code-audit.md",
+    "01-Projects/FSBO-Hub/SESSION-OUTPUT.md",
+    "01-Projects/FSBO-Hub/network-status.md",
+    "01-Projects/FSBO-Hub/cloudflare-pages-setup.md",
+    "01-Projects/FSBO-Hub/link-audit.md",
+    "01-Projects/FSBO-Hub/affiliate-stack.md",
+    "01-Projects/FSBO-Hub/netlify-credits-guide.md",
+    "01-Projects/FSBO-Hub/byownerhub-build-plan.md",
+    "01-Projects/FTB-Hub/index.md",
+    "01-Projects/FSBO-Hub/fsbo-hub-banner.png",
+    "01-Projects/Frontalier/index.md"
+  ]
+}
