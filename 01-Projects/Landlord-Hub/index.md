@@ -1,7 +1,9 @@
 ---
-tags: [project, landlord, active]
+type: project-index
 project: Landlord-Hub
 status: active
+last-verified: 2026-04-09
+tags: [project, landlord, active]
 stack: Next.js 14, TypeScript, Tailwind
 updated: 2026-04-09
 ---

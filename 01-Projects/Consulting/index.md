@@ -1,7 +1,9 @@
 ---
-tags: [project, consulting, active]
+type: project-index
 project: Consulting
 status: active
+last-verified: 2026-04-09
+tags: [project, consulting, active]
 updated: 2026-04-09
 ---
 

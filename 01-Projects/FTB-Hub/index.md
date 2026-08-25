@@ -1,7 +1,9 @@
 ---
-tags: [project, ftb, active]
+type: project-index
 project: FTB-Hub
 status: active
+last-verified: 2026-04-09
+tags: [project, ftb, active]
 stack: Next.js 14, TypeScript, Tailwind
 updated: 2026-04-09
 ---

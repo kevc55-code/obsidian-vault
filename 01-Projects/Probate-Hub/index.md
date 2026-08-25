@@ -1,7 +1,9 @@
 ---
-tags: [project, probate, active]
+type: project-index
 project: Probate-Hub
 status: active
+last-verified: 2026-04-09
+tags: [project, probate, active]
 stack: Next.js 14, TypeScript, Tailwind
 updated: 2026-04-09
 ---
