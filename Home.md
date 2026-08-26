@@ -5,10 +5,11 @@ last-verified: 2026-08-25
 
 # Vault Home
 
-> [!warning] Requires community plugins
-> The queries below need **Dataview**; `_Templates/` needs **Templater**. Neither is installed yet
-> (`.obsidian/` has no `plugins/` folder). Until you install both from
-> *Settings → Community plugins → Browse*, these render as inert code blocks.
+> [!info] Requires Dataview + Templater
+> The queries on this page are rendered by the **Dataview** plugin; `_Templates/` needs
+> **Templater**. Both are installed and enabled on this machine.
+> On a fresh clone they won't be — plugin *code* isn't committed, only the settings — so
+> install both from *Settings → Community plugins → Browse* or these become inert code blocks.
 
 ## 📁 PARA
 
