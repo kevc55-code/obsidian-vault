@@ -50,7 +50,10 @@ TABLE WITHOUT ID
   last-verified                                    AS "Last Verified",
   round((date(today) - date(last-verified)).days)  AS "Days Ago"
 FROM "01-Projects" OR "02-Areas"
-WHERE last-verified AND (date(today) - date(last-verified)) > dur(30 days)
+WHERE last-verified
+  AND (date(today) - date(last-verified)) > dur(30 days)
+  AND type != "session"
+  AND !contains(file.folder, "archive")
 SORT last-verified ASC
 ```
 
