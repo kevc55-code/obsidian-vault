@@ -2,6 +2,12 @@
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
 
+# Obsidian plugin CODE auto-updates constantly and would churn every commit.
+# Keep each plugin's settings (data.json) and the enabled-list
+# (.obsidian/community-plugins.json) so the setup still travels to a new machine.
+.obsidian/plugins/*/*
+!.obsidian/plugins/*/data.json
+
 # Scratch awaiting review/deletion — intentionally untracked
 04-Archive/_quarantine/
 
