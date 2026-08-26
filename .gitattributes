@@ -1,0 +1,11 @@
+# Obsidian writes CRLF on Windows. Without this, every file it touches shows as
+# "modified" with an empty diff, and the weekly update-obsidian-vault job commits noise.
+# Store text as LF in the repo; check out native line endings.
+* text=auto
+
+# Never line-ending-mangle binaries
+*.pdf  binary
+*.png  binary
+*.jpg  binary
+*.xlsx binary
+*.zip  binary
