@@ -1,12 +1,12 @@
 ---
 type: status
 project: FSBO-Hub
-last-verified: 2026-05-28
+last-verified: 2026-08-26
 ---
 
 # Affiliate Stack — fsbo-hub (v3)
 
-*Last updated: 2026-05-28*
+*Last updated: 2026-08-26 — Buildium added (Property Mgmt, enrolled, placement undecided).*
 
 > **Houzeo has NO affiliate program — do not add to any site.**
 
@@ -30,6 +30,37 @@ last-verified: 2026-05-28
 | Mortgage | LendingTree | $1–$70/lead | 🔲 Pending | Not yet applied |
 | Mortgage | Rocket Money | up to $500/loan | 🔲 Pending | |
 | Home Services | Angi (fka HomeAdvisor) | 25% revshare | ✅ **Enrolled** | Via CJ. Publisher ID: 101755238. Contact: affiliate@angi.com. See links below. |
+| Property Mgmt | Buildium | **TBD — confirm in Impact** | ✅ **Enrolled** | Accepted 2026-08-26 via Impact (Gen3 Marketing). Media ID `7372899`. **Landlord/FRBO audience only — not fsbo-hub.** Placement undecided. See links below. |
+
+---
+
+## Buildium Links (Impact, Media ID: 7372899)
+
+Property-management software. **Wrong audience for fsbo-hub** — someone selling their own home has
+no use for rent collection or tenant screening. Fits `landlord-hub` and `rent-hub`/`frbo-hub`;
+marginal on `closing-hub` (only new owners intending to rent out). Do not place on fsbo-hub.
+
+Use the plain anchors below, **not** the iframe versions Impact also supplies — a
+protocol-relative `//a.impactradius-go.com` frame is render-blocking, shifts layout, and hurts
+these statically-exported Next.js sites. The impression `<img>` pixel is optional for text links
+and can be dropped.
+
+**Schedule a Demo**
+```html
+<a rel="sponsored" href="https://buildium.ustnul.net/c/7372899/1495062/10839">Schedule a Demo</a>
+```
+
+**Free 14-Day Trial**
+```html
+<a rel="sponsored" href="https://buildium.ustnul.net/c/7372899/734067/10839">Free Trial</a>
+```
+
+`rel="sponsored"` is already correct as supplied. Affiliate disclosure still required on any page
+carrying these.
+
+**Open:** commission terms unknown — the acceptance email doesn't state them. Pull the payout from
+Impact and fill the table row before placing these anywhere.
+Contact: buildium@gen3marketing.com
 
 ---
 

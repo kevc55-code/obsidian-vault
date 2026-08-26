@@ -1,19 +1,56 @@
 ---
 type: status
 project: FSBO-Hub
-last-verified: 2026-08-25
+last-verified: 2026-08-26
 ---
 
 # ByOwnerHub Network — Open Items
 
-*Last updated: 2026-08-25 — see [[SESSION-2026-08-25]]. Network-wide OG-image fix landed (5 repos). Production (fsbo-freemium-sandbox) shipped a build-pipeline fix explicitly noted as having blocked switching to live Stripe keys — new 🔴 item below asking Kevin to confirm. fsbo-staging caught back up on refund/resume, now re-building the AI-crawler fix independently.*
+*Last updated: 2026-08-26 — production checkout had been returning 500 to every visitor since at least 08-04: the Stripe key ID was set instead of the secret key. Fixed and redeployed. Two new 🔴 items opened (deploy-context key sharing, unverified live webhook endpoint).*
+*Previously: 2026-08-25 — see [[SESSION-2026-08-25]]. Network-wide OG-image fix landed (5 repos). Production (fsbo-freemium-sandbox) shipped a build-pipeline fix explicitly noted as having blocked switching to live Stripe keys — new 🔴 item below asking Kevin to confirm. fsbo-staging caught back up on refund/resume, now re-building the AI-crawler fix independently.*
 *Previously: 2026-08-24 — weekly link audit ([[link-audit]]): 21 new failures, 11 real (orphan sitemap gaps on buyer/divorce/estate/funeral-hub), 3 real external 404s (2 with replacements found), 7 false positives, 155 resolved. Mirror-branch drift jumped 0→19 repos, worth a look. See 🔴 section below.*
 
 ---
 
-## 🔴 NEW 2026-08-25 — confirm whether live Stripe keys are now applied on fsbo-freemium-sandbox
+## ✅ Resolved 2026-08-26 — production checkout was 500ing; the Stripe key *ID* had been set, not the key
 
-Production's build-skip guard (added 08-21, `91ce945`) compared `CACHED_COMMIT_REF` to `COMMIT_REF` to avoid rebuilding on no-op pushes — correct for pushes, but it also skipped **manual** "Trigger deploy" redeploys, where the two refs are identical. Fixed 2026-08-25 (`f955716`). The commit message says this was silently blocking the switch to live Stripe keys, since Netlify only bakes a new env var into a build that actually runs, and a manual redeploy with no code change is exactly how you'd apply one. Ask Kevin whether live Stripe keys have now actually been set and a redeploy triggered — if not, this was just the blocker being cleared, not the switch itself.
+**Root cause:** Stripe's dashboard shows each API key with an identifier (`mk_1Tvaj…`) next to
+the secret (`sk_live_…`). The **ID** was pasted into `STRIPE_SECRET_KEY` in Netlify, so every
+`checkout.sessions.create` returned **401 StripeAuthenticationError — "Invalid API Key provided:
+mk_1Tvaj…"**. Every visitor clicking the $99 button got "Failed to create checkout session".
+Live keys were therefore never working in production, despite being "set".
+
+**Why it hid for three weeks:**
+- The route's `catch` returned a generic string, leaking no cause to the browser.
+- **Stripe's request log showed nothing.** An unrecognised key can't be attributed to an account,
+  so the 401s never appeared under our logs — last entry was 2026-08-04. This is the misleading
+  part: an empty Stripe log looked like "no traffic", not "auth failing".
+- The 08-25 manual redeploy was **skipped** by the build guard — it rebuilt 08-23's commit
+  (`33c0ef2`) in an identical 94s. The guard fix (`f955716`) only shipped at 08:28 that day.
+
+**Found** 2026-08-26 in the **Netlify function log** (`Stripe checkout error:`), which had been
+recording the full exception all along. **Fixed** by setting the real `sk_live_…` and redeploying;
+three genuine 87–95s builds ran on 08-26, which also confirms manual redeploys now build properly.
+
+> **Lesson:** if a Stripe call fails and *nothing* appears in Stripe's request log, the request
+> never reached Stripe. Look at the server log, not the Stripe dashboard.
+
+## 🔴 NEW 2026-08-26 — Stripe key is shared across all Netlify deploy contexts
+
+`STRIPE_SECRET_KEY` holds one value for Production, Deploy Previews, Branch deploys, and Preview
+Server & Agent Runners. With a live key that means **any preview or branch deploy can take real
+payments** — and fsbo-staging exists precisely to test checkout. Split it: `sk_live_` on
+Production only, `sk_test_` on preview contexts, Local left empty (`.env.local` supplies it).
+Same for `STRIPE_WEBHOOK_SECRET`, which is a different value per mode.
+
+## 🔴 NEW 2026-08-26 — confirm a live-mode Stripe webhook endpoint exists
+
+**Not yet verified.** Webhook endpoints do not carry over from test mode, and server-side checkout
+never worked in live mode until today — so the live endpoint may never have been created. Without
+it, payments succeed and entitlements never grant: the customer pays $99 and gets nothing. Check
+dashboard.stripe.com/webhooks for an endpoint targeting
+`https://fsbo.byownerhub.com/api/stripe/webhook` handling `checkout.session.completed` and
+`charge.refunded`, and confirm `STRIPE_WEBHOOK_SECRET` matches that endpoint's signing secret.
 
 ## ✅ Resolved 2026-08-25 — network-wide OG-image 404s (55plus/boat/closing/condo/investor-hub)
 
