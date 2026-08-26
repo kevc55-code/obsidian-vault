@@ -1,17 +1,25 @@
+<%*
+const repo     = await tp.system.prompt("GitHub repo (owner/name)", "kevc55-code/");
+const category = await tp.system.prompt("Category", "real-estate-network");
+const parts    = tp.file.folder(true).split("/");
+const i        = parts.indexOf("01-Projects");
+const project  = (i >= 0 && parts.length > i + 1) ? parts[i + 1] : tp.file.folder(false);
+if (tp.file.title !== "index") { try { await tp.file.rename("index"); } catch (e) {} }
+-%>
 ---
 type: project-index
-project: <% tp.file.folder(false) %>
-repo: <% tp.system.prompt("GitHub repo (owner/name)") %>
-category: <% tp.system.prompt("Category", "real-estate-network") %>
+project: <% project %>
+repo: <% repo %>
+category: <% category %>
 status: active
 deploy-ready: false
 last-verified: <% tp.date.now("YYYY-MM-DD") %>
 open-items: 0
 ---
 
-# <% tp.file.folder(false) %> — Project Reference
+# <% project %> — Project Reference
 
-> **Repo:** `github.com/<% tp.frontmatter.repo %>`
+> **Repo:** `github.com/<% repo %>`
 > **Stack:**
 > **Current HEAD:**
 
@@ -36,7 +44,7 @@ open-items: 0
 
 ```dataview
 LIST
-FROM "01-Projects/<% tp.file.folder(false) %>"
+FROM "01-Projects/<% project %>"
 WHERE type != "project-index"
 SORT last-verified DESC
 ```
