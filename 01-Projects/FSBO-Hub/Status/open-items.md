@@ -1,16 +1,30 @@
 ---
 type: status
 project: FSBO-Hub
-last-verified: 2026-08-26
+last-verified: 2026-08-27
 ---
 
 # ByOwnerHub Network — Open Items
 
-*Last updated: 2026-08-26 — production checkout had been returning 500 to every visitor since at least 08-04: the Stripe key ID was set instead of the secret key. Fixed and redeployed. Two new 🔴 items opened (deploy-context key sharing, unverified live webhook endpoint).*
+*Last updated: 2026-08-27 — daily inbox digest: Buildium affiliate application accepted via Impact (no terms in the email). One new 🔴 item opened. Stripe key-roll notifications on 08-26 look intentional (map to existing open items), no new item.*
+*Previously: 2026-08-26 — production checkout had been returning 500 to every visitor since at least 08-04: the Stripe key ID was set instead of the secret key. Fixed and redeployed. Two new 🔴 items opened (deploy-context key sharing, unverified live webhook endpoint).*
 *Previously: 2026-08-25 — see [[SESSION-2026-08-25]]. Network-wide OG-image fix landed (5 repos). Production (fsbo-freemium-sandbox) shipped a build-pipeline fix explicitly noted as having blocked switching to live Stripe keys — new 🔴 item below asking Kevin to confirm. fsbo-staging caught back up on refund/resume, now re-building the AI-crawler fix independently.*
 *Previously: 2026-08-24 — weekly link audit ([[link-audit]]): 21 new failures, 11 real (orphan sitemap gaps on buyer/divorce/estate/funeral-hub), 3 real external 404s (2 with replacements found), 7 false positives, 155 resolved. Mirror-branch drift jumped 0→19 repos, worth a look. See 🔴 section below.*
 
 ---
+
+## 🔴 NEW 2026-08-27 — Buildium affiliate application accepted (Impact), no terms recorded yet
+
+"Welcome to Buildium!" from `notifications@app.impact.com` (2026-08-25) confirms Buildium accepted
+the affiliate application. Buildium was a **pending** program in the Affiliate Enrollments backlog
+below (targeted at landlord-hub and str-hub). The acceptance email contains **no commission terms** —
+it only instructs logging into Impact and adding creatives. Program managed by Gen3 Marketing
+(`buildium@gen3marketing.com`); Impact IDs referenced: 2017129 / 10839.
+
+**Recommended action:** log into the Impact dashboard, record actual payout terms (CPA vs revshare,
+cookie window), then place Buildium tracking links ("Schedule a Demo" / "14-day trial") on
+landlord-hub and str-hub. Move Buildium from "By Program (pending)" to "Enrolled" in this file and
+update [[affiliate-stack]].
 
 ## ✅ Resolved 2026-08-26 — production checkout was 500ing; the Stripe key *ID* had been set, not the key
 

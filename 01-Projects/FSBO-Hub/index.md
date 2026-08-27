@@ -5,8 +5,8 @@ repo: kevc55-code/fsbo-hub
 category: real-estate-network
 status: active
 deploy-ready: false
-last-verified: 2026-08-26
-open-items: 16
+last-verified: 2026-08-27
+open-items: 17
 ---
 
 # FSBO Hub — Project Reference
