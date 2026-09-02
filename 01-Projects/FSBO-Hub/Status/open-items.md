@@ -1,17 +1,39 @@
 ---
 type: status
 project: FSBO-Hub
-last-verified: 2026-08-27
+last-verified: 2026-09-02
 ---
 
 # ByOwnerHub Network — Open Items
 
-*Last updated: 2026-08-27 — daily inbox digest: Buildium affiliate application accepted via Impact (no terms in the email). One new 🔴 item opened. Stripe key-roll notifications on 08-26 look intentional (map to existing open items), no new item.*
+*Last updated: 2026-09-02 — daily inbox digest ([[daily-digest]]): FlexOffers affiliate reapplication came back **declined** (Pierre hit "application ... has been declined" in `#all-byownerhub-re` 09-01; Kevin: "I think we were declined"). One new 🔴 item opened below. Also worth knowing: LandlordHub "Get State Lease Forms" bug confirmed fixed site-wide by Pierre (Kevin's 08-31 old-code fix); CycleTrader Partners application submitted (pending); Rakuten Advertising login-activation email seen. Weekly audit 09-01 already logged in the line below.*
+*Previously: 2026-09-01 — weekly link audit ([[link-audit]]): no real link rot. 7 new failures reported, 0 real — 6 transient `??` false positives (all live-verified 200), 1 known `ohio.gov` geo-block (`insurance.ohio.gov` OH page; fine for US visitors — recommend allowlisting it next interactive session). No 🔴 link item opened. Resolved since 08-24: `landlord.byownerhub.com` fully back (51 pages + sitemap, was 1-page/NO-SITEMAP stale Netlify snapshot); 08-24 orphan sitemap gaps confirmed closed. NOT resolved: mirror-branch drift still ~21 repos (same set as 08-24 + buyer/estate/funeral) — persisted across two weekly runs, cosmetic per [[network-audit-automation]] but worth a batch sync. Slack posting resumed this run (Kevin's in-session call, overriding the 2026-07-26 "Slack off") — parent + 3 replies in `#network-audit-results` thread `1788266323.222339`, awaiting approvals.*
+*Previously: 2026-08-27 — daily inbox digest: Buildium affiliate application accepted via Impact (no terms in the email). One new 🔴 item opened. Stripe key-roll notifications on 08-26 look intentional (map to existing open items), no new item.*
 *Previously: 2026-08-26 — production checkout had been returning 500 to every visitor since at least 08-04: the Stripe key ID was set instead of the secret key. Fixed and redeployed. Two new 🔴 items opened (deploy-context key sharing, unverified live webhook endpoint).*
 *Previously: 2026-08-25 — see [[SESSION-2026-08-25]]. Network-wide OG-image fix landed (5 repos). Production (fsbo-freemium-sandbox) shipped a build-pipeline fix explicitly noted as having blocked switching to live Stripe keys — new 🔴 item below asking Kevin to confirm. fsbo-staging caught back up on refund/resume, now re-building the AI-crawler fix independently.*
 *Previously: 2026-08-24 — weekly link audit ([[link-audit]]): 21 new failures, 11 real (orphan sitemap gaps on buyer/divorce/estate/funeral-hub), 3 real external 404s (2 with replacements found), 7 false positives, 155 resolved. Mirror-branch drift jumped 0→19 repos, worth a look. See 🔴 section below.*
 
 ---
+
+## 🔴 NEW 2026-09-02 — FlexOffers reapplication was declined
+
+Source: `#all-byownerhub-re` Slack, 2026-09-01. Pierre logged into FlexOffers and got
+*"The application matching this email address has been declined. If you have any questions,
+please contact support@flexoffers.com."* Kevin: *"I think we were declined by flexoffers."*
+Pierre's theory: possibly too many application attempts on the same email. He notes some of
+those advertisers appear reachable via Impact instead.
+
+FlexOffers was carried in the Affiliate Enrollments backlog below as *"⚠️ Reapplication needed:
+email support@flexoffers.com (sites now live)"* — this updates that status from "reapply" to
+"reapplied → declined."
+
+**Recommended action:**
+1. Email `support@flexoffers.com` asking the decline reason and whether re-application is
+   possible (mention the multiple-attempts theory; a single fresh application from a clean
+   email may be the fix).
+2. In parallel, inventory which FlexOffers-only advertisers the network actually wanted and
+   check for the same programs on Impact or CJ; re-route those rather than waiting on FlexOffers.
+3. Update the FlexOffers line in Affiliate Enrollments → Priority Applications once resolved.
 
 ## 🔴 NEW 2026-08-27 — Buildium affiliate application accepted (Impact), no terms recorded yet
 
@@ -100,9 +122,15 @@ No longer "3 commits behind production" as of 08-21 — staging's `master` now h
 
 Follow-up on the 2026-08-19 "not live" finding below: car-by-owner turned out to have **migrated to Cloudflare Pages** at some point (contradicts older memory calling it Netlify — a stale `netlify.toml` was still sitting in the repo unused, same landmine class as landlord-hub's pre-07-23 issue). Kevin pulled the CF Pages build log, which showed the actual cause: every deploy was failing at `npx @cloudflare/next-on-pages` with an ERESOLVE conflict (next-on-pages@1.13.16 wants `@cloudflare/workers-types` ^4.x, auto-installed wrangler@4.124.0 wants ^5.x as peer) — neither pinned in package.json, so both resolve fresh at build time and collide. **Identical root cause to str-hub's `23ce82d` (2026-08-05).** Fixed the same way: added `.npmrc` with `legacy-peer-deps=true`, dropped the stale `netlify.toml` (`5e7e030`). Build succeeded, deploy went live within ~2 min. **Live-verified all previously-flagged items now correct in production**: GA T-7 form page (`/states/georgia/t-7-bill-of-sale`) 200 with correct dor.georgia.gov link, MA/ND/SD/WI/WY/TX/OK/MS/MT dmv links all match fixed source, Illinois duplicate "Official state form" link confirmed gone (form-guide section intact). This closes out car-by-owner's half of the item below — **only landlord-hub's DNS issue remains open.**
 
-## 🔴 OPEN — landlord-hub: DNS still points at the old dead Netlify site, not CF Pages (2026-08-19, reconfirmed 2026-08-20)
+## ✅ Resolved 2026-08-20 — landlord-hub DNS cutover finally complete
 
-Pierre re-checked live and reported LandlordHub "still has the bugs" despite `ecb8876` being pushed. `curl -I https://landlord.byownerhub.com/alabama` shows `Server: Netlify`, `Cache-Status: "Netlify Edge"/"Netlify Durable"`, Age now >60 days (a snapshot from around 2026-06-20, before landlord-hub ever moved to CF Pages) — **reconfirmed still on Netlify as of 2026-08-20, no change.** The CF Pages project itself is fine and current — `landlord-hub.pages.dev/alabama/` shows the fixed `ecb8876` lease-form URL — but the custom domain never actually got cut over, or reverted. **This is the SAME "canonical-domain cutover trap" landmine from [[byownerhub-network-layout]], previously logged as fixed 2026-07-23 — that fix did not hold (or was undone).** Needs Kevin to fix DNS again: remove/replace the CNAME → old Netlify host, point `landlord.byownerhub.com` at the CF Pages project as a proper custom domain. Not fixable from git — no Cloudflare dashboard/DNS access from this session.
+Root cause was two-layered, both fixed by Kevin directly in the Cloudflare dashboard this session:
+1. **DNS**: `landlord.byownerhub.com` CNAME was still pointed at `byownerlandlordhub.netlify.app` (DNS only/grey-cloud) — the dead Netlify site, serving a ~68-day-stale cached snapshot from before landlord-hub ever moved to CF Pages. Fixed by editing the record to target `landlord-hub.pages.dev` with Proxy status = Proxied.
+2. **CF Pages Custom Domain registration** (the actual [[byownerhub-network-layout]] "canonical-domain cutover trap" — the part that never held from the 07-23 attempt): a proxied DNS CNAME alone wasn't sufficient — Cloudflare's edge didn't know to route `landlord.byownerhub.com` to the `landlord-hub` Pages project without it being registered on the project's own Custom Domains tab, which produced a 522 (edge-to-origin timeout) even after DNS was corrected. That tab only had `forrent.byownerhub.com` (Active) and a bogus, never-resolving `landlordhub.byownerhub.com` (stuck "Verifying" since 07-23 — recommend deleting, violates the no-"hub"-in-subdomain naming rule and nothing points to it). Added `landlord.byownerhub.com` there directly; verified within minutes.
+
+**Live-verified all 50 states** against the fixed source (`ecb8876`): zero mismatches, every "Get [State] Lease Forms" link now resolves to the correct ezlandlordforms.com URL. Confirmed via direct browser click-through earlier the same day that this was broken ("Page Not Found | ezLandlordForms") before the fix, then reconfirmed working after.
+
+**Process lesson for the next canonical-domain cutover**: DNS CNAME + Proxied status is necessary but not sufficient for a CF Pages custom domain — always also check/add the hostname on the Pages project's own Custom Domains tab, or it'll 522 even with correct DNS. This closes the item below fully — car-by-owner's half closed 2026-08-20 (see above), landlord-hub's half closed here.
 
 ## 🔴 STR-hub, boat-hub bug lists — CONFIRMED RESOLVED live (2026-08-19)
 
