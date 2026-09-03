@@ -1,12 +1,13 @@
 ---
 type: status
 project: FSBO-Hub
-last-verified: 2026-09-02
+last-verified: 2026-09-03
 ---
 
 # ByOwnerHub Network — Open Items
 
-*Last updated: 2026-09-02 — daily inbox digest ([[daily-digest]]): FlexOffers affiliate reapplication came back **declined** (Pierre hit "application ... has been declined" in `#all-byownerhub-re` 09-01; Kevin: "I think we were declined"). One new 🔴 item opened below. Also worth knowing: LandlordHub "Get State Lease Forms" bug confirmed fixed site-wide by Pierre (Kevin's 08-31 old-code fix); CycleTrader Partners application submitted (pending); Rakuten Advertising login-activation email seen. Weekly audit 09-01 already logged in the line below.*
+*Verified current 2026-09-03 — vault-sync re-run: no repo activity since the 2026-09-02 "positioning + commission" sprint (all of it already logged below). Full-network scan confirms fsbo-freemium-sandbox `c2bb429`, fsbo-staging `f3ce1c8`, fsbo-hub `main` `e659fd1`, car-by-owner `ba17a8d` all still in sync with origin; buyer-hub's uncommitted `tools/network-audit/` files are the 2026-09-01 run (unchanged). Unchanged open: `freemium-wip` 11 unpushed, unrotated PAT (~42 days), mirror-branch drift ~21 repos.*
+*Previously: 2026-09-02 — daily inbox digest ([[daily-digest]]): FlexOffers affiliate reapplication came back **declined** (Pierre hit "application ... has been declined" in `#all-byownerhub-re` 09-01; Kevin: "I think we were declined"). One new 🔴 item opened below. Also worth knowing: LandlordHub "Get State Lease Forms" bug confirmed fixed site-wide by Pierre (Kevin's 08-31 old-code fix); CycleTrader Partners application submitted (pending); Rakuten Advertising login-activation email seen. Weekly audit 09-01 already logged in the line below.*
 *Previously: 2026-09-01 — weekly link audit ([[link-audit]]): no real link rot. 7 new failures reported, 0 real — 6 transient `??` false positives (all live-verified 200), 1 known `ohio.gov` geo-block (`insurance.ohio.gov` OH page; fine for US visitors — recommend allowlisting it next interactive session). No 🔴 link item opened. Resolved since 08-24: `landlord.byownerhub.com` fully back (51 pages + sitemap, was 1-page/NO-SITEMAP stale Netlify snapshot); 08-24 orphan sitemap gaps confirmed closed. NOT resolved: mirror-branch drift still ~21 repos (same set as 08-24 + buyer/estate/funeral) — persisted across two weekly runs, cosmetic per [[network-audit-automation]] but worth a batch sync. Slack posting resumed this run (Kevin's in-session call, overriding the 2026-07-26 "Slack off") — parent + 3 replies in `#network-audit-results` thread `1788266323.222339`, awaiting approvals.*
 *Previously: 2026-08-27 — daily inbox digest: Buildium affiliate application accepted via Impact (no terms in the email). One new 🔴 item opened. Stripe key-roll notifications on 08-26 look intentional (map to existing open items), no new item.*
 *Previously: 2026-08-26 — production checkout had been returning 500 to every visitor since at least 08-04: the Stripe key ID was set instead of the secret key. Fixed and redeployed. Two new 🔴 items opened (deploy-context key sharing, unverified live webhook endpoint).*
