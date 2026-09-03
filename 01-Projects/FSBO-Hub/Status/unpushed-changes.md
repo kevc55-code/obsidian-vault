@@ -1,24 +1,28 @@
 ---
 type: status
 project: FSBO-Hub
-last-verified: 2026-08-25
+last-verified: 2026-09-03
 ---
 
 # Network — Unpushed Changes
 
-*Last updated: 2026-08-25 (see [[SESSION-2026-08-25]] for full detail)*
+*Last updated: 2026-09-03 (see [[SESSION-2026-09-02]] for full detail)*
 
 ---
 
 ## 🔴 Currently unpushed / uncommitted
 
-**fsbo-hub `freemium-wip`** — still 11 commits ahead of `origin/freemium-wip`, unchanged since 08-05 (same commits: `831a09f`, `7c82d32`, `01e822c`, `a953599`, `bd6054d`, `588daec`, `707b11c`, `ef035bb`, `0dbf67d` merge, `d630097`, `721c175`). **Deploy-readiness still not re-verified** — the 07-12 check now predates 6+ weeks and six separate vault-check sessions. Likely superseded in practice by production's real Stripe/freemium build on `fsbo-freemium-sandbox` — see [[open-items]] item 8.
+**fsbo-hub `freemium-wip`** — still 11 commits ahead of `origin/freemium-wip`, unchanged since 08-05 (same commits: `831a09f`, `7c82d32`, `01e822c`, `a953599`, `bd6054d`, `588daec`, `707b11c`, `ef035bb`, `0dbf67d` merge, `d630097`, `721c175`). **Deploy-readiness still not re-verified** — the 07-12 check now predates ~8 weeks and seven separate vault-check sessions. Likely superseded in practice by production's real Stripe/freemium build on `fsbo-freemium-sandbox` — see [[open-items]] item 8.
 
-**fsbo-hub `main`** — same uncommitted local edit to `src/components/Hero.tsx`, unchanged since 2026-08-21 (removes the two hero CTA buttons, tightens vertical padding; now 4 days uncommitted). Not staged, not committed. Otherwise in sync with `origin/main` at `5bd8207`.
+**fsbo-freemium-sandbox** — two untracked deploy scripts remain (`deploy.bat`, `deploy_freemium_branch.ps1`), unchanged since 07-23; the latter still has the plaintext PAT, **still not rotated (~41 days)**. Also a staged-but-uncommitted one-line `.claude/launch.json` rename (`"fsbo-hub"` → `"fsbo-production"`, matches staging's `e84abb2`) — trivial. `master` itself is fully pushed and in sync with origin at **`c2bb429`** (6 more commits 2026-09-02 — Stripe checkout error-logging fix, homepage positioning module + free/paid hero split, commission-figure single-basis refactor — see [[SESSION-2026-09-02]]).
 
-**fsbo-staging** — **new** uncommitted local edit to `src/app/page.tsx` and `src/app/robots.ts` as of 2026-08-25: an independent re-implementation of production's `1cd6b5c` (AI-crawler robots.txt block + broken SearchAction removal). Same dev-first pattern as the earlier metro/suburb redesign — built on staging, not yet committed. `master` itself (`43fff8e`) is in sync with `origin/master` and has caught up on the refund-revocation/resume + refund-guarantee-fix commits it was missing as of 08-21; still 2 commits behind production (the state-blog fix and today's build-skip fix — see [[open-items]]).
+## ✅ Resolved 2026-09-02
 
-**fsbo-freemium-sandbox** — two untracked deploy scripts remain (`deploy.bat`, `deploy_freemium_branch.ps1`), unchanged since 07-23; the latter still has the plaintext PAT, still not rotated (33 days). `master` itself is fully pushed and in sync with origin, now at `f955716` (3 more commits since 08-21 — AI-crawler/SearchAction fix, state-blog fix, and a build-skip-guard fix explicitly noted as having blocked switching to live Stripe keys) — see [[open-items]] for full detail.
+**fsbo-hub `main` — Hero.tsx edit committed + pushed.** The uncommitted `src/components/Hero.tsx` edit carried since 2026-08-21 (drops the two metro-hero CTA buttons, tightens vertical padding) is now `e659fd1` "refactor(hero): drop the metro hero CTAs and tighten the spacing", **pushed**. `main` in sync with `origin/main` at `e659fd1`; working tree clean.
+
+**fsbo-staging — pending crawler-policy edit committed; caught up to production.** The uncommitted `src/app/page.tsx` + `src/app/robots.ts` edit flagged 2026-08-25 is now committed as `1bf2a10`. `master` moved to `f3ce1c8` (7 commits 2026-09-02, all pushed / in sync with `origin/master`): the crawler-policy commit, its own preview-config name (`e84abb2`), and an independent re-build of production's positioning-module + free/paid-hero + commission-single-basis set (same messages, different hashes). Staging now lacks only production's prod-specific Stripe error-logging commit (`2feef13`).
+
+**car-by-owner `main`** — `ba17a8d` (2026-09-02, page-level FTC disclosure above CTAs + Carfax note tidy) pushed; `main` in sync with origin.
 
 ## ✅ Resolved 2026-08-21
 

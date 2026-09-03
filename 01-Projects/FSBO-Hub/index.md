@@ -5,7 +5,7 @@ repo: kevc55-code/fsbo-hub
 category: real-estate-network
 status: active
 deploy-ready: false
-last-verified: 2026-09-02
+last-verified: 2026-09-03
 open-items: 17
 ---
 
@@ -14,8 +14,8 @@ open-items: 17
 > **Repo:** `github.com/kevc55-code/fsbo-hub`
 > **Stack:** Next.js 14 (App Router) · TypeScript · Tailwind CSS · Netlify
 > **Owner entity:** Byownerhub.com LLC (NM) — 1209 Mountain Road Pl NE, Ste N, Albuquerque, NM 87110
-> **Current HEAD (main):** `5bd8207` — moved 2026-08-19 via `8212ae6` (seller-progress workspace feature) and `5bd8207` (metro page redesign: "read as a tool, not an article" — mirrors the production redesign shipped the same period on `fsbo-freemium-sandbox`). In sync with origin. **Uncommitted local edit** to `src/components/Hero.tsx` as of 2026-08-21 (removes hero CTA buttons, tightens padding) — appears to be mid-port of the same redesign. See [[SESSION-2026-08-21]] and [[unpushed-changes]].
-> **Branch `freemium-wip`:** $99 Stripe toolkit, still 11 commits ahead of origin (unpushed) as of 2026-08-21 — unchanged for over two weeks. Deploy-readiness not re-verified since the 2026-07-12 check, now 5+ weeks stale (launch steps in [[open-items]] item 8). Note: this branch predates and is separate from production's actual freemium build, which lives in `fsbo-freemium-sandbox` and has already shipped Stripe checkout + refunds + entitlement (see [[SESSION-2026-08-21]]).
+> **Current HEAD (main):** `e659fd1` — moved 2026-09-02 via `e659fd1` ("drop the metro hero CTAs and tighten the spacing"), which finally commits + pushes the `Hero.tsx` edit that had sat uncommitted since 2026-08-21. Prior moves: `8212ae6` (seller-progress workspace feature) and `5bd8207` (metro page redesign: "read as a tool, not an article"), both 2026-08-19. In sync with origin; working tree clean. See [[SESSION-2026-09-02]] and [[unpushed-changes]].
+> **Branch `freemium-wip`:** $99 Stripe toolkit, still 11 commits ahead of origin (unpushed) as of 2026-09-02 — unchanged since 08-05. Deploy-readiness not re-verified since the 2026-07-12 check, now 5+ weeks stale (launch steps in [[open-items]] item 8). Note: this branch predates and is separate from production's actual freemium build, which lives in `fsbo-freemium-sandbox` and has already shipped Stripe checkout + refunds + entitlement (see [[SESSION-2026-08-21]]).
 
 ---
 

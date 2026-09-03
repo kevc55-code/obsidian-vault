@@ -172,11 +172,15 @@ The 9-commit, 15-day-stale `master` backlog (SEO P3b/P7/P8 + a same-day STR-perm
 - [ ] **Verify Stripe's `charge.refunded` webhook event is actually subscribed to** in the Stripe dashboard — the revocation code assumes it fires; if the event isn't subscribed, refunds won't revoke access.
 - **fsbo-staging is now 3 commits behind production** — has the redesign (independently re-implemented, same messages/different hashes — the intended dev-first workflow) but not the 3 newest commits (refund revocation/resume, refund-guarantee fix, build-cache fix). Not urgent, staging never serves a live domain.
 
-## 🔴 STILL unpushed as of 2026-08-21 — fsbo-hub `freemium-wip` unchanged
+## 🔴 STILL unpushed as of 2026-09-02 — fsbo-hub `freemium-wip` unchanged
 
-- **fsbo-hub `freemium-wip`** — still 11 commits ahead of `origin/freemium-wip`, unchanged since 08-05. Deploy-readiness still not re-verified since the 07-12 check — now 5+ weeks and five vault-check sessions running. Note: this branch is increasingly moot — production's real freemium/Stripe build lives in `fsbo-freemium-sandbox` and has already shipped checkout + refunds + entitlement (see above). Worth asking Kevin whether `freemium-wip` should just be abandoned. See item 8 below.
-- **fsbo-hub `main` has a new uncommitted edit** — `src/components/Hero.tsx` (removes hero CTA buttons, tightens padding), appears to be mid-port of the production redesign. Not committed as of 2026-08-21.
+- **fsbo-hub `freemium-wip`** — still 11 commits ahead of `origin/freemium-wip`, unchanged since 08-05. Deploy-readiness still not re-verified since the 07-12 check — now ~8 weeks and seven vault-check sessions running. Note: this branch is increasingly moot — production's real freemium/Stripe build lives in `fsbo-freemium-sandbox` and has already shipped checkout + refunds + entitlement (see above). Worth asking Kevin whether `freemium-wip` should just be abandoned. See item 8 below.
+- ~~**fsbo-hub `main` has a new uncommitted edit** — `src/components/Hero.tsx`~~ **RESOLVED 2026-09-02** — committed + pushed as `e659fd1` ("drop the metro hero CTAs and tighten the spacing") after sitting uncommitted since 08-21. `main` in sync with origin, working tree clean.
 - Full detail in [[unpushed-changes]].
+
+## ✅ Resolved 2026-09-02 — "positioning + commission" sprint (fsbo repos, pushed)
+
+See [[SESSION-2026-09-02]]. Production (`fsbo-freemium-sandbox`) `master` `f955716` → `c2bb429`, 6 commits pushed: homepage **positioning module** + hero line **stating the free/paid split**; commission figures **derived from median price in one place** (`src/lib/commission.ts`), metro page **shows both figures instead of one ambiguous number** (retires a drifted `types` field); and `2feef13` **fix(stripe): log and surface the failure class on checkout errors** — the code follow-up to the 2026-08-26 key-ID incident (the generic catch string that hid a live-mode 401 for three weeks). `fsbo-staging` independently re-built the same set (`master` → `f3ce1c8`, 7 commits pushed) and committed its previously-pending AI-crawler/SearchAction edit (`1bf2a10`). `car-by-owner` shipped `ba17a8d` (page-level FTC disclosure above CTAs).
 
 ## ✅ Resolved (found no longer outstanding, 2026-08-21) — the 07-23 1-ahead items
 
