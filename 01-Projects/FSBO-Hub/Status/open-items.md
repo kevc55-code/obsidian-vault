@@ -7,12 +7,53 @@ last-verified: 2026-09-03
 # ByOwnerHub Network — Open Items
 
 *Verified current 2026-09-03 — vault-sync re-run: no repo activity since the 2026-09-02 "positioning + commission" sprint (all of it already logged below). Full-network scan confirms fsbo-freemium-sandbox `c2bb429`, fsbo-staging `f3ce1c8`, fsbo-hub `main` `e659fd1`, car-by-owner `ba17a8d` all still in sync with origin; buyer-hub's uncommitted `tools/network-audit/` files are the 2026-09-01 run (unchanged). Unchanged open: `freemium-wip` 11 unpushed, unrotated PAT (~42 days), mirror-branch drift ~21 repos.*
+*Previously: 2026-09-03 — daily inbox digest ([[daily-digest]]): two new 🔴 opened. (1) Unexplained Bitwarden new-device login on 2026-09-02 from an IP (`187.14.51.59`) that geolocates to Brazil — not Kevin (US) or Pierre (Mulhouse FR); verify or treat as vault compromise. (2) WillMaker/Nolo (Internet Brands, CJ PID 101755238) publisher application has a live info request outstanding (site-visit stats + placement URLs) — reply needed to keep it alive. Worth knowing: Alison/Awin invite declined by K+P (reply sent); Impact.com login alert = Pierre's Mulhouse location; Carfax partner thread resurfaced with no new message, ball in our court since 2026-06-26; Rakuten Advertising activation still pending.*
 *Previously: 2026-09-02 — daily inbox digest ([[daily-digest]]): FlexOffers affiliate reapplication came back **declined** (Pierre hit "application ... has been declined" in `#all-byownerhub-re` 09-01; Kevin: "I think we were declined"). One new 🔴 item opened below. Also worth knowing: LandlordHub "Get State Lease Forms" bug confirmed fixed site-wide by Pierre (Kevin's 08-31 old-code fix); CycleTrader Partners application submitted (pending); Rakuten Advertising login-activation email seen. Weekly audit 09-01 already logged in the line below.*
 *Previously: 2026-09-01 — weekly link audit ([[link-audit]]): no real link rot. 7 new failures reported, 0 real — 6 transient `??` false positives (all live-verified 200), 1 known `ohio.gov` geo-block (`insurance.ohio.gov` OH page; fine for US visitors — recommend allowlisting it next interactive session). No 🔴 link item opened. Resolved since 08-24: `landlord.byownerhub.com` fully back (51 pages + sitemap, was 1-page/NO-SITEMAP stale Netlify snapshot); 08-24 orphan sitemap gaps confirmed closed. NOT resolved: mirror-branch drift still ~21 repos (same set as 08-24 + buyer/estate/funeral) — persisted across two weekly runs, cosmetic per [[network-audit-automation]] but worth a batch sync. Slack posting resumed this run (Kevin's in-session call, overriding the 2026-07-26 "Slack off") — parent + 3 replies in `#network-audit-results` thread `1788266323.222339`, awaiting approvals.*
 *Previously: 2026-08-27 — daily inbox digest: Buildium affiliate application accepted via Impact (no terms in the email). One new 🔴 item opened. Stripe key-roll notifications on 08-26 look intentional (map to existing open items), no new item.*
 *Previously: 2026-08-26 — production checkout had been returning 500 to every visitor since at least 08-04: the Stripe key ID was set instead of the secret key. Fixed and redeployed. Two new 🔴 items opened (deploy-context key sharing, unverified live webhook endpoint).*
 *Previously: 2026-08-25 — see [[SESSION-2026-08-25]]. Network-wide OG-image fix landed (5 repos). Production (fsbo-freemium-sandbox) shipped a build-pipeline fix explicitly noted as having blocked switching to live Stripe keys — new 🔴 item below asking Kevin to confirm. fsbo-staging caught back up on refund/resume, now re-building the AI-crawler fix independently.*
 *Previously: 2026-08-24 — weekly link audit ([[link-audit]]): 21 new failures, 11 real (orphan sitemap gaps on buyer/divorce/estate/funeral-hub), 3 real external 404s (2 with replacements found), 7 false positives, 155 resolved. Mirror-branch drift jumped 0→19 repos, worth a look. See 🔴 section below.*
+
+---
+
+## 🔴 NEW 2026-09-03 — Bitwarden new-device login from a Brazil IP (verify or treat as vault compromise)
+
+Source: two emails to `byownerhubadmin@gmail.com` on 2026-09-02 ~09:52 UTC from
+`no-reply@bitwarden.com` — *"Your Bitwarden Verification Code"*, then 17 seconds later
+*"New Device Logged In From Chrome Extension"*. The device was new; the source IP
+`187.14.51.59` geolocates to Brazil (Telefônica/Vivo) — not Kevin's usual US location and
+not Pierre's France (Mulhouse) location. The email-OTP challenge was cleared within seconds,
+so whoever authenticated also had access to the `byownerhubadmin` inbox at that time.
+
+**Why it matters:** Bitwarden is the network's password vault — the maximum-blast-radius
+account. [[vault-credential-exposure]] still tracks un-rotated exposed tokens (2× Cloudflare,
+GitHub, Netlify, plus a 5th PAT in fsbo-freemium-sandbox). An unexplained vault login from an
+unexpected country is the trigger to act on, not wait out.
+
+**Recommended action:**
+1. Kevin/Pierre confirm whether either of them — or any automated tooling — logged into
+   Bitwarden via a Chrome extension on 2026-09-02.
+2. If not confirmed: change the Bitwarden master password, deauthorize all sessions
+   (web vault → Account Settings → Deauthorize Sessions), verify 2FA is enabled, and rotate
+   the highest-value secrets stored in the vault (the tokens tracked in
+   [[vault-credential-exposure]] are already overdue).
+3. Record the outcome here either way.
+
+## 🔴 NEW 2026-09-03 — WillMaker (Nolo / Internet Brands) publisher application needs a reply
+
+Source: email from `paul.ji@internetbrands.com` (2026-09-02), *"Re: WillMaker publisher
+application — Byownerhub.com LLC (CJ PID 101755238)"*. The publisher is asking (a) how many
+site visits our sites generate and (b) the URLs where WillMaker / Nolo products would be
+listed, before advancing the application.
+
+This is the *"Nolo (120-day cookie!) — fsbo, divorce"* line in Affiliate Enrollments → By
+Program moving forward — not a duplicate, it's a live application with a specific info
+request outstanding that goes cold without a response.
+
+**Recommended action:** Pierre replies with network traffic figures (or a representative
+subset — fsbo + top hubs) and the specific pages where Nolo/WillMaker links would sit (fsbo
+state guides, divorce-hub). Update the Nolo line once enrolled.
 
 ---
 
