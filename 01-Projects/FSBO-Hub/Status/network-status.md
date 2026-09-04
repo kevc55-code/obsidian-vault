@@ -1,16 +1,27 @@
 ---
 type: status
 project: FSBO-Hub
-last-verified: 2026-09-03
+last-verified: 2026-09-04
 ---
 
 # ByOwnerHub Network — Build Status
 
-*Last updated: 2026-09-03 — see [[SESSION-2026-09-02]] for the full log. Hosting/deploy topology unchanged since 07-12 (still CF Pages network-wide except fsbo/car/landlord on Netlify, solar undeployed). A **"positioning + commission" copy/data sprint** landed 2026-09-02 on all three fsbo repos: production (`fsbo-freemium-sandbox`) got 6 pushed commits (homepage free/paid split + positioning module, commission figures derived from one shared `commission.ts`, a Stripe checkout error-logging fix), `fsbo-staging` independently re-built the same set and committed its previously-pending crawler-policy edit, and **fsbo-hub `main`'s `Hero.tsx` edit — uncommitted since 08-21 — finally got committed and pushed (`e659fd1`)**, clearing that item. car-by-owner shipped a page-level FTC-disclosure commit. Weekly link audit (09-01) and affiliate digest (09-02) already logged in [[open-items]]. Still open: `freemium-wip` 11 unpushed (4 weeks), the unrotated PAT (~41 days), mirror-branch drift ~21 repos. See [[unpushed-changes]], [[open-items]].*
+*Last updated: 2026-09-04 — see [[SESSION-2026-09-03]] for the full log. Hosting/deploy topology unchanged since 07-12 (still CF Pages network-wide except fsbo/car/landlord on Netlify, solar undeployed). An **"under-contract / contract-stage" feature sprint** landed 2026-09-03/04 on both fsbo product repos: production (`fsbo-freemium-sandbox`) `c2bb429` → `22b2643` (18 commits, all pushed) and `fsbo-staging` `f3ce1c8` → `6441f7e` (17 commits, all pushed, independently re-built). New: per-state under-contract pages, a workspace DeadlineTracker, a state requirements matrix, partner co-branding with `?ref=` → Stripe/purchases attribution, cookieless analytics. The 09-04 tail carries **the real fix for the AI-route 400s** (missing `anthropic-workspace-id` header) plus two price-tool fixes. No other repo moved. Still open: `freemium-wip` 11 unpushed (~5 weeks), the unrotated PAT (~43 days), mirror-branch drift ~21 repos. See [[unpushed-changes]], [[open-items]].*
 
 ---
 
-## 🟢 Current State of Union (2026-09-02)
+## 🟢 Current State of Union (2026-09-03/04)
+
+- **"Under-contract / contract-stage" sprint, 2026-09-03/04, both fsbo product repos, all pushed.** Production (`fsbo-freemium-sandbox`) `master` `c2bb429` → `22b2643`, 18 commits in sync with origin. Adds a **contract-stage data model** feeding a **workspace DeadlineTracker** (persists into the same saved workspace the paid tier uses), **per-state under-contract pages** (new route, linked from guides + metros), a **state requirements matrix** route, **partner co-branding** (co-branded landing template + `?ref=` carried through to the Stripe session and the `purchases` row), an **attorney-state offer variant**, a **flat-fee → MLS-comparison handoff**, and **cookieless analytics with three funnel events**.
+- **fsbo-staging independently re-built the same sprint** — `master` `f3ce1c8` → `6441f7e`, 17 commits, all pushed / in sync. Same messages, different hashes (the established dev-first flow). Level with production; the only prod commit it lacks is `9cc4b3d` (production's own preview-config-name chore — staging did its own as `e84abb2` last sprint).
+- **The AI-route 400s are actually fixed.** `1ef9ecb` "say which failure the AI routes hit, not 'AI service error'" stopped the generic catch string swallowing the cause; `22b2643` (2026-09-04) then fixed it — a **missing `anthropic-workspace-id` header** on the Anthropic API calls. Same failure mode as the 08-26 Stripe key-ID incident. **Worth live-verifying** the listing-description / price-estimate tools on fsbo.byownerhub.com. Two price-tool UX fixes shipped alongside (`fcd1487`, `b058de3`).
+- **fsbo-hub `main`** — no change, still `e659fd1`, in sync, working tree clean. `freemium-wip` unchanged (11 unpushed, ~5 weeks, unverified since 07-12, likely superseded).
+- **car-by-owner** — no change since `ba17a8d` (2026-09-02), in sync.
+- **Unchanged:** `fsbo-freemium-sandbox`'s two untracked deploy scripts with the still-unrotated plaintext PAT (~43 days); buyer-hub's `tools/network-audit/{report.md,results.json}` still holding the 2026-09-01 audit run uncommitted (no new audit); mirror-branch drift ~21 repos (batch sync overdue). Local-clone pointer staleness (origin has everything): funeral-hub `master` -7, investor-hub `master` -6, landlord-hub `claude/fervent-almeida-217d54` -20. No other repo moved.
+
+---
+
+## 🟢 Previous State of Union (2026-09-02)
 
 - **"Positioning + commission" sprint, 2026-09-02, all three fsbo repos.** Production (`fsbo-freemium-sandbox`) `master` `f955716` → `c2bb429`, 6 commits, all pushed: a homepage **positioning module** + a hero line **stating the free/paid split** outright; commission figures now **derived from median price in one place** (`src/lib/commission.ts`) and the metro page **shows both figures instead of one ambiguous number** (routes suburb page / `opengraph-image` / `SavingsCalculator` / `SchemaMarkup` through it, retires a drifted `types` field); and `fix(stripe)`: the checkout `catch` now **logs and surfaces the Stripe failure class** — the direct follow-up to the 2026-08-26 key-ID incident where a generic catch string hid a live-mode 401 for three weeks.
 - **fsbo-staging independently re-built the same sprint** — `master` → `f3ce1c8`, 7 commits, all pushed / in sync. Includes committing `1bf2a10` (the AI-crawler / SearchAction edit that was sitting **uncommitted** as of 08-25) and `e84abb2` (its own preview-config name so it stops colliding with production in the tooling). Different hashes, same messages — the intended dev-first flow. Staging is now essentially level with production, lacking only the prod-specific Stripe error-logging commit.

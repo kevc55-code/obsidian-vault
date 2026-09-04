@@ -1,12 +1,13 @@
 ---
 type: status
 project: FSBO-Hub
-last-verified: 2026-09-03
+last-verified: 2026-09-04
 ---
 
 # ByOwnerHub Network — Open Items
 
-*Verified current 2026-09-03 — vault-sync re-run: no repo activity since the 2026-09-02 "positioning + commission" sprint (all of it already logged below). Full-network scan confirms fsbo-freemium-sandbox `c2bb429`, fsbo-staging `f3ce1c8`, fsbo-hub `main` `e659fd1`, car-by-owner `ba17a8d` all still in sync with origin; buyer-hub's uncommitted `tools/network-audit/` files are the 2026-09-01 run (unchanged). Unchanged open: `freemium-wip` 11 unpushed, unrotated PAT (~42 days), mirror-branch drift ~21 repos.*
+*Verified current 2026-09-04 — vault-sync re-run: an **"under-contract / contract-stage" feature sprint** landed 2026-09-03/04 on both fsbo product repos (production `fsbo-freemium-sandbox` `c2bb429` → `22b2643`, 18 commits; `fsbo-staging` `f3ce1c8` → `6441f7e`, 17 commits) — **all pushed, all in sync with origin**, independently re-built on staging per the usual dev-first flow. See resolved entry below and [[SESSION-2026-09-03]]. The 09-04 tail includes the real fix for the AI-route 400s (missing `anthropic-workspace-id` header) — needs live-verification. No other repo moved: fsbo-hub `main` still `e659fd1`, car-by-owner still `ba17a8d`, both in sync; buyer-hub's uncommitted `tools/network-audit/` files are still the 2026-09-01 run. Unchanged open: `freemium-wip` 11 unpushed, unrotated PAT (~43 days), mirror-branch drift ~21 repos.*
+*Previously: 2026-09-03 — vault-sync re-run: no repo activity since the 2026-09-02 "positioning + commission" sprint. Full-network scan confirmed fsbo-freemium-sandbox `c2bb429`, fsbo-staging `f3ce1c8`, fsbo-hub `main` `e659fd1`, car-by-owner `ba17a8d` all in sync with origin.*
 *Previously: 2026-09-03 — daily inbox digest ([[daily-digest]]): two new 🔴 opened. (1) Unexplained Bitwarden new-device login on 2026-09-02 from an IP (`187.14.51.59`) that geolocates to Brazil — not Kevin (US) or Pierre (Mulhouse FR); verify or treat as vault compromise. (2) WillMaker/Nolo (Internet Brands, CJ PID 101755238) publisher application has a live info request outstanding (site-visit stats + placement URLs) — reply needed to keep it alive. Worth knowing: Alison/Awin invite declined by K+P (reply sent); Impact.com login alert = Pierre's Mulhouse location; Carfax partner thread resurfaced with no new message, ball in our court since 2026-06-26; Rakuten Advertising activation still pending.*
 *Previously: 2026-09-02 — daily inbox digest ([[daily-digest]]): FlexOffers affiliate reapplication came back **declined** (Pierre hit "application ... has been declined" in `#all-byownerhub-re` 09-01; Kevin: "I think we were declined"). One new 🔴 item opened below. Also worth knowing: LandlordHub "Get State Lease Forms" bug confirmed fixed site-wide by Pierre (Kevin's 08-31 old-code fix); CycleTrader Partners application submitted (pending); Rakuten Advertising login-activation email seen. Weekly audit 09-01 already logged in the line below.*
 *Previously: 2026-09-01 — weekly link audit ([[link-audit]]): no real link rot. 7 new failures reported, 0 real — 6 transient `??` false positives (all live-verified 200), 1 known `ohio.gov` geo-block (`insurance.ohio.gov` OH page; fine for US visitors — recommend allowlisting it next interactive session). No 🔴 link item opened. Resolved since 08-24: `landlord.byownerhub.com` fully back (51 pages + sitemap, was 1-page/NO-SITEMAP stale Netlify snapshot); 08-24 orphan sitemap gaps confirmed closed. NOT resolved: mirror-branch drift still ~21 repos (same set as 08-24 + buyer/estate/funeral) — persisted across two weekly runs, cosmetic per [[network-audit-automation]] but worth a batch sync. Slack posting resumed this run (Kevin's in-session call, overriding the 2026-07-26 "Slack off") — parent + 3 replies in `#network-audit-results` thread `1788266323.222339`, awaiting approvals.*
@@ -219,6 +220,24 @@ The 9-commit, 15-day-stale `master` backlog (SEO P3b/P7/P8 + a same-day STR-perm
 - **fsbo-hub `freemium-wip`** — still 11 commits ahead of `origin/freemium-wip`, unchanged since 08-05. Deploy-readiness still not re-verified since the 07-12 check — now ~8 weeks and seven vault-check sessions running. Note: this branch is increasingly moot — production's real freemium/Stripe build lives in `fsbo-freemium-sandbox` and has already shipped checkout + refunds + entitlement (see above). Worth asking Kevin whether `freemium-wip` should just be abandoned. See item 8 below.
 - ~~**fsbo-hub `main` has a new uncommitted edit** — `src/components/Hero.tsx`~~ **RESOLVED 2026-09-02** — committed + pushed as `e659fd1` ("drop the metro hero CTAs and tighten the spacing") after sitting uncommitted since 08-21. `main` in sync with origin, working tree clean.
 - Full detail in [[unpushed-changes]].
+
+## ✅ Resolved 2026-09-03/04 — "under-contract / contract-stage" sprint (fsbo product repos, pushed)
+
+See [[SESSION-2026-09-03]]. Production (`fsbo-freemium-sandbox`) `master` `c2bb429` → `22b2643`, **18 commits, all pushed / in sync with origin** (15 dated 09-03, 3 dated 09-04). `fsbo-staging` `master` `f3ce1c8` → `6441f7e`, **17 commits, all pushed**, independently re-built (same messages, different hashes). Delivered:
+
+- **Contract-stage model + workspace DeadlineTracker** (`a2b7c23`, `7f1e6af`, `1992ca5`, `b378865`) — persists into the saved paid-tier workspace.
+- **Per-state under-contract pages** (`265968a`), linked from state guides + metros (`4698e84`).
+- **State requirements matrix** route (`2b40b21`; `1acfb87` same-day coverage-claim correction).
+- **Partner co-branding** — co-branded landing template (`1421805`) + `?ref=` carried through to the Stripe session and the `purchases` row (`4744791`).
+- **Copy/routing** — attorney-state offer variant (`49f5f9d`), flat-fee → MLS-comparison handoff (`ef105ee`).
+- **Cookieless analytics + three funnel events** (`eaa34a6`).
+- **AI-route error handling** — `1ef9ecb` stopped the generic "AI service error" catch string; `22b2643` (09-04) then fixed the real cause of the 400s: a **missing `anthropic-workspace-id` header**. Same failure mode as the 08-26 Stripe key-ID incident.
+- **Price tool** (09-04) — `fcd1487` stop requiring an optional metro, `b058de3` clear the error between steps.
+
+**Follow-ups (need a human eye):**
+- [ ] **Live-verify the AI tools** (listing-description, price-estimate) on fsbo.byownerhub.com — `22b2643` claims the `anthropic-workspace-id` header was the 400 cause.
+- [ ] **Confirm the new under-contract + state-requirements routes are in `sitemap.ts` output** and not orphaned.
+- [ ] **Confirm the `purchases` row tolerates `?ref=`** — the column exists in production Supabase and the webhook handler doesn't choke when `ref` is absent (non-referral purchases).
 
 ## ✅ Resolved 2026-09-02 — "positioning + commission" sprint (fsbo repos, pushed)
 

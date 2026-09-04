@@ -1,12 +1,12 @@
 ---
 type: status
 project: FSBO-Hub
-last-verified: 2026-09-03
+last-verified: 2026-09-04
 ---
 
 # Network — Unpushed Changes
 
-*Last updated: 2026-09-03 (see [[SESSION-2026-09-02]] for full detail)*
+*Last updated: 2026-09-04 (see [[SESSION-2026-09-03]] for full detail)*
 
 ---
 
@@ -14,7 +14,9 @@ last-verified: 2026-09-03
 
 **fsbo-hub `freemium-wip`** — still 11 commits ahead of `origin/freemium-wip`, unchanged since 08-05 (same commits: `831a09f`, `7c82d32`, `01e822c`, `a953599`, `bd6054d`, `588daec`, `707b11c`, `ef035bb`, `0dbf67d` merge, `d630097`, `721c175`). **Deploy-readiness still not re-verified** — the 07-12 check now predates ~8 weeks and seven separate vault-check sessions. Likely superseded in practice by production's real Stripe/freemium build on `fsbo-freemium-sandbox` — see [[open-items]] item 8.
 
-**fsbo-freemium-sandbox** — two untracked deploy scripts remain (`deploy.bat`, `deploy_freemium_branch.ps1`), unchanged since 07-23; the latter still has the plaintext PAT, **still not rotated (~41 days)**. Also a staged-but-uncommitted one-line `.claude/launch.json` rename (`"fsbo-hub"` → `"fsbo-production"`, matches staging's `e84abb2`) — trivial. `master` itself is fully pushed and in sync with origin at **`c2bb429`** (6 more commits 2026-09-02 — Stripe checkout error-logging fix, homepage positioning module + free/paid hero split, commission-figure single-basis refactor — see [[SESSION-2026-09-02]]).
+**fsbo-freemium-sandbox** — two untracked deploy scripts remain (`deploy.bat`, `deploy_freemium_branch.ps1`), unchanged since 07-23; the latter still has the plaintext PAT, **still not rotated (~43 days)**. `master` itself is fully pushed and in sync with origin at **`22b2643`** — the 2026-09-03/04 "under-contract / contract-stage" sprint added 18 commits on top of `c2bb429` (contract-stage model + workspace DeadlineTracker, per-state under-contract pages, state requirements matrix, partner `?ref=` co-branding, cookieless analytics, the AI `anthropic-workspace-id` 400 fix, price-tool fixes — see [[SESSION-2026-09-03]]). The staged-but-uncommitted `.claude/launch.json` rename was resolved into `9cc4b3d` ("give production its own preview config name").
+
+**fsbo-staging** — `master` fully pushed / in sync with origin at **`6441f7e`** — independently re-built the same 09-03/04 sprint (17 commits on top of `f3ce1c8`, same messages / different hashes). Level with production. No uncommitted work.
 
 ## ✅ Resolved 2026-09-02
 
