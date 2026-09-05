@@ -1,16 +1,24 @@
 ---
 type: status
 project: FSBO-Hub
-last-verified: 2026-09-04
+last-verified: 2026-09-05
 ---
 
 # ByOwnerHub Network — Build Status
 
-*Last updated: 2026-09-04 — see [[SESSION-2026-09-03]] for the full log. Hosting/deploy topology unchanged since 07-12 (still CF Pages network-wide except fsbo/car/landlord on Netlify, solar undeployed). An **"under-contract / contract-stage" feature sprint** landed 2026-09-03/04 on both fsbo product repos: production (`fsbo-freemium-sandbox`) `c2bb429` → `22b2643` (18 commits, all pushed) and `fsbo-staging` `f3ce1c8` → `6441f7e` (17 commits, all pushed, independently re-built). New: per-state under-contract pages, a workspace DeadlineTracker, a state requirements matrix, partner co-branding with `?ref=` → Stripe/purchases attribution, cookieless analytics. The 09-04 tail carries **the real fix for the AI-route 400s** (missing `anthropic-workspace-id` header) plus two price-tool fixes. No other repo moved. Still open: `freemium-wip` 11 unpushed (~5 weeks), the unrotated PAT (~43 days), mirror-branch drift ~21 repos. See [[unpushed-changes]], [[open-items]].*
+*Last updated: 2026-09-05 — vault-sync re-run found one more commit closing out the 09-03/04 sprint on both fsbo product repos: `feat(nav): surface the deadline tracker from the homepage and nav` (production `4bf79a7`, staging `cb86a99`, both dated 2026-09-04 evening, both pushed). It adds a `/under-contract` state index, a homepage card, and nav links (desktop + metro-scoped mobile) — the under-contract pages had shipped 09-03/04 with no path in from the homepage or nav. Also adds the missing sitemap entry. This closes one of the two open follow-ups from the sprint (see [[open-items]]). No other repo moved since 09-04. See [[SESSION-2026-09-03]] for the full sprint log. Hosting/deploy topology unchanged since 07-12 (still CF Pages network-wide except fsbo/car/landlord on Netlify, solar undeployed). Still open: `freemium-wip` 11 unpushed (~5 weeks), the unrotated PAT (~43 days), mirror-branch drift ~21 repos. See [[unpushed-changes]], [[open-items]].*
 
 ---
 
-## 🟢 Current State of Union (2026-09-03/04)
+## 🟢 Current State of Union (2026-09-04 evening)
+
+- **Deadline tracker made discoverable, both fsbo product repos, pushed.** One follow-up commit on top of the 09-03/04 under-contract sprint: production (`fsbo-freemium-sandbox`) `master` `22b2643` → `4bf79a7`; `fsbo-staging` `master` `6441f7e` → `cb86a99` (same message, independently re-built). The under-contract pages had been reachable only from state guides, below the fold on metro pages, and from the MLS comparison — the homepage linked to them zero times and the nav had no entry, risking the new `deadline_dates_entered` funnel metric reading "nobody wants this" when the truth was "nobody can find it." Adds a `/under-contract` index (51 states), a homepage card under the ZIP form, nav entries (desktop + mobile, linking straight to the visitor's current metro state), and the sitemap entry. Closes the open-items follow-up "confirm under-contract routes are in sitemap.ts and not orphaned" for `/under-contract` (state-requirements was already there).
+- **fsbo-hub `main`, car-by-owner** — no change, unchanged since 09-02, both in sync, working trees clean.
+- **Unchanged:** `fsbo-freemium-sandbox`'s two untracked deploy scripts with the still-unrotated plaintext PAT (~44 days); buyer-hub's `tools/network-audit/{report.md,results.json}` still holding the 2026-09-01 audit run uncommitted (no new audit); mirror-branch drift ~21 repos (batch sync overdue); `freemium-wip` still 11 unpushed. No other repo moved.
+
+---
+
+## 🟢 Previous State of Union (2026-09-03/04)
 
 - **"Under-contract / contract-stage" sprint, 2026-09-03/04, both fsbo product repos, all pushed.** Production (`fsbo-freemium-sandbox`) `master` `c2bb429` → `22b2643`, 18 commits in sync with origin. Adds a **contract-stage data model** feeding a **workspace DeadlineTracker** (persists into the same saved workspace the paid tier uses), **per-state under-contract pages** (new route, linked from guides + metros), a **state requirements matrix** route, **partner co-branding** (co-branded landing template + `?ref=` carried through to the Stripe session and the `purchases` row), an **attorney-state offer variant**, a **flat-fee → MLS-comparison handoff**, and **cookieless analytics with three funnel events**.
 - **fsbo-staging independently re-built the same sprint** — `master` `f3ce1c8` → `6441f7e`, 17 commits, all pushed / in sync. Same messages, different hashes (the established dev-first flow). Level with production; the only prod commit it lacks is `9cc4b3d` (production's own preview-config-name chore — staging did its own as `e84abb2` last sprint).
