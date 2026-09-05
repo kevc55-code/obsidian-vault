@@ -7,6 +7,7 @@ last-verified: 2026-09-04
 # ByOwnerHub Network — Open Items
 
 *Verified current 2026-09-04 — vault-sync re-run: an **"under-contract / contract-stage" feature sprint** landed 2026-09-03/04 on both fsbo product repos (production `fsbo-freemium-sandbox` `c2bb429` → `22b2643`, 18 commits; `fsbo-staging` `f3ce1c8` → `6441f7e`, 17 commits) — **all pushed, all in sync with origin**, independently re-built on staging per the usual dev-first flow. See resolved entry below and [[SESSION-2026-09-03]]. The 09-04 tail includes the real fix for the AI-route 400s (missing `anthropic-workspace-id` header) — needs live-verification. No other repo moved: fsbo-hub `main` still `e659fd1`, car-by-owner still `ba17a8d`, both in sync; buyer-hub's uncommitted `tools/network-audit/` files are still the 2026-09-01 run. Unchanged open: `freemium-wip` 11 unpushed, unrotated PAT (~43 days), mirror-branch drift ~21 repos.*
+*Previously: 2026-09-04 — daily inbox digest ([[daily-digest]]): quiet day, 1 actionable, no new open items. The 2026-09-02 Bitwarden new-device login from a Brazil IP is **still unresolved** — no confirmation from Kevin or Pierre two days on; 🔴 item below unchanged. WillMaker/Nolo (🔴 below): Pierre replied 09-03 with traffic context + placement pages and answered a follow-up about the Trust & Will listing ("not partnering currently… can remove it") — the item's action is now done, awaiting Paul Ji's response; may need to drop the Trust & Will link from fsbo / divorce-hub if they require it. Worth knowing: Empathy (post-loss / estate-settlement support platform) sent a partnership follow-up — Pierre registered interest and they want a call; someone signed up for Umami Cloud analytics (supersedes the long-stalled Plausible plan); the Carfax car-by-owner thread is still unanswered on our side since 2026-06-26; Alison/Awin invite declined (closed).*
 *Previously: 2026-09-03 — vault-sync re-run: no repo activity since the 2026-09-02 "positioning + commission" sprint. Full-network scan confirmed fsbo-freemium-sandbox `c2bb429`, fsbo-staging `f3ce1c8`, fsbo-hub `main` `e659fd1`, car-by-owner `ba17a8d` all in sync with origin.*
 *Previously: 2026-09-03 — daily inbox digest ([[daily-digest]]): two new 🔴 opened. (1) Unexplained Bitwarden new-device login on 2026-09-02 from an IP (`187.14.51.59`) that geolocates to Brazil — not Kevin (US) or Pierre (Mulhouse FR); verify or treat as vault compromise. (2) WillMaker/Nolo (Internet Brands, CJ PID 101755238) publisher application has a live info request outstanding (site-visit stats + placement URLs) — reply needed to keep it alive. Worth knowing: Alison/Awin invite declined by K+P (reply sent); Impact.com login alert = Pierre's Mulhouse location; Carfax partner thread resurfaced with no new message, ball in our court since 2026-06-26; Rakuten Advertising activation still pending.*
 *Previously: 2026-09-02 — daily inbox digest ([[daily-digest]]): FlexOffers affiliate reapplication came back **declined** (Pierre hit "application ... has been declined" in `#all-byownerhub-re` 09-01; Kevin: "I think we were declined"). One new 🔴 item opened below. Also worth knowing: LandlordHub "Get State Lease Forms" bug confirmed fixed site-wide by Pierre (Kevin's 08-31 old-code fix); CycleTrader Partners application submitted (pending); Rakuten Advertising login-activation email seen. Weekly audit 09-01 already logged in the line below.*
@@ -55,6 +56,14 @@ request outstanding that goes cold without a response.
 **Recommended action:** Pierre replies with network traffic figures (or a representative
 subset — fsbo + top hubs) and the specific pages where Nolo/WillMaker links would sit (fsbo
 state guides, divorce-hub). Update the Nolo line once enrolled.
+
+**Update 2026-09-04:** Pierre replied on 09-03 — sent the traffic context (network is new this
+year, volume modest but growing, content-first) and placement pages, then answered a follow-up
+from Paul Ji about the Trust & Will listing on the site ("not partnering with them currently…
+we can remove it if necessary to allow us to join"). The outstanding info request is now
+answered; **ball is in Paul's court.** Next possible action on us: pull the Trust & Will
+link/CTA from fsbo and divorce-hub if Internet Brands makes that a condition of approval.
+Keep this open until the application resolves (accepted / declined).
 
 ---
 
