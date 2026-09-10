@@ -1,12 +1,12 @@
 ---
 type: status
 project: FSBO-Hub
-last-verified: 2026-09-05
+last-verified: 2026-09-10
 ---
 
 # Network — Unpushed Changes
 
-*Last updated: 2026-09-05*
+*Last updated: 2026-09-10 — no repo activity network-wide since 2026-09-05; nothing new committed or unpushed. Correction: fsbo-freemium-sandbox's untracked `deploy_freemium_branch.ps1` no longer holds a plaintext PAT (rewritten 2026-08-26 to read from an encrypted secrets vault) — see below and [[open-items]].*
 
 ---
 
@@ -14,7 +14,7 @@ last-verified: 2026-09-05
 
 **fsbo-hub `freemium-wip`** — still 11 commits ahead of `origin/freemium-wip`, unchanged since 08-05 (same commits: `831a09f`, `7c82d32`, `01e822c`, `a953599`, `bd6054d`, `588daec`, `707b11c`, `ef035bb`, `0dbf67d` merge, `d630097`, `721c175`). **Deploy-readiness still not re-verified** — the 07-12 check now predates ~8 weeks and nine separate vault-check sessions. Likely superseded in practice by production's real Stripe/freemium build on `fsbo-freemium-sandbox` — see [[open-items]] item 8.
 
-**fsbo-freemium-sandbox** — two untracked deploy scripts remain (`deploy.bat`, `deploy_freemium_branch.ps1`), unchanged since 07-23; the latter still has the plaintext PAT, **still not rotated (~44 days)**. `master` itself is fully pushed and in sync with origin at **`4bf79a7`** — one commit past the 09-03/04 sprint's `22b2643`: `feat(nav): surface the deadline tracker from the homepage and nav` (adds `/under-contract` state index, homepage card, nav links, sitemap entry — see [[network-status]]).
+**fsbo-freemium-sandbox** — two untracked deploy scripts remain (`deploy.bat`, `deploy_freemium_branch.ps1`). `deploy_freemium_branch.ps1` was **rewritten 2026-08-26**: the hardcoded `ghp_…` PAT is removed, it now dot-sources `…\ops-scripts\_secrets.ps1` and reads `$env:GH_TOKEN` from an encrypted SecretManagement vault. `deploy.bat` never held a token. Not a plaintext-credential exposure anymore; **provider-side rotation of the 9 "burned" tokens still shows pending** in the ops-scripts README (unverifiable from here) — see [[open-items]], [[vault-credential-exposure]]. `master` itself is fully pushed and in sync with origin at **`4bf79a7`** — one commit past the 09-03/04 sprint's `22b2643`: `feat(nav): surface the deadline tracker from the homepage and nav` (adds `/under-contract` state index, homepage card, nav links, sitemap entry — see [[network-status]]).
 
 **fsbo-staging** — `master` fully pushed / in sync with origin at **`cb86a99`** — independently re-built the same nav commit on top of `6441f7e` (same message, different hash). Level with production. No uncommitted work.
 

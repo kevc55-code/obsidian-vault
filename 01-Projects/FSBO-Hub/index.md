@@ -5,7 +5,7 @@ repo: kevc55-code/fsbo-hub
 category: real-estate-network
 status: active
 deploy-ready: false
-last-verified: 2026-09-05
+last-verified: 2026-09-10
 open-items: 19
 ---
 
@@ -15,7 +15,7 @@ open-items: 19
 > **Stack:** Next.js 14 (App Router) · TypeScript · Tailwind CSS · Netlify
 > **Owner entity:** Byownerhub.com LLC (NM) — 1209 Mountain Road Pl NE, Ste N, Albuquerque, NM 87110
 > **Current HEAD (main):** `e659fd1` — moved 2026-09-02 via `e659fd1` ("drop the metro hero CTAs and tighten the spacing"), which finally commits + pushes the `Hero.tsx` edit that had sat uncommitted since 2026-08-21. Prior moves: `8212ae6` (seller-progress workspace feature) and `5bd8207` (metro page redesign: "read as a tool, not an article"), both 2026-08-19. In sync with origin; working tree clean. See [[SESSION-2026-09-02]] and [[unpushed-changes]].
-> **Branch `freemium-wip`:** $99 Stripe toolkit, still 11 commits ahead of origin (unpushed) as of 2026-09-05 — unchanged since 08-05 (~5 weeks / nine vault-check sessions). Deploy-readiness not re-verified since the 2026-07-12 check (launch steps in [[open-items]] item 8). Note: this branch predates and is separate from production's actual freemium build, which lives in `fsbo-freemium-sandbox` and has shipped Stripe checkout + refunds + entitlement + (2026-09-03/04) a contract-stage workspace, under-contract pages, partner co-branding, and (09-04 tail) homepage/nav discoverability for the under-contract pages (see [[SESSION-2026-08-21]], [[SESSION-2026-09-03]]).
+> **Branch `freemium-wip`:** $99 Stripe toolkit, still 11 commits ahead of origin (unpushed) as of 2026-09-10 — unchanged since 08-05 (~5 weeks / ten vault-check sessions). Deploy-readiness not re-verified since the 2026-07-12 check (launch steps in [[open-items]] item 8). Note: this branch predates and is separate from production's actual freemium build, which lives in `fsbo-freemium-sandbox` and has shipped Stripe checkout + refunds + entitlement + (2026-09-03/04) a contract-stage workspace, under-contract pages, partner co-branding, and (09-04 tail) homepage/nav discoverability for the under-contract pages (see [[SESSION-2026-08-21]], [[SESSION-2026-09-03]]).
 
 ---
 
