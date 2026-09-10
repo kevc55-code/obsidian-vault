@@ -3,57 +3,67 @@ type: audit
 audit-kind: link
 project: FSBO-Hub
 status: canonical
-last-verified: 2026-09-01
+last-verified: 2026-09-07
 ---
 
 # Network Link Audit — Latest Run
 
-**Date:** 2026-09-01 (weekly scheduled run, baseline still 2026-07-13 — no `--update-baseline` run yet).
+**Date:** 2026-09-07 (weekly scheduled run, baseline still 2026-07-13 — no `--update-baseline` run yet).
 
-Sites: 38 | Pages: 3,275 | Unique external links: 3,546
-**NEW failures: 7 reported → 0 real.** 6 false positives (transient `??`, all live-verified 200), 1 known `ohio.gov` geo-block. | total failures: 9 (2 already in baseline) | resolved since baseline: 155
+Sites: 38 | Pages: 3,328 | Unique external links: 3,612
+**NEW failures: 32 reported → 6 real.** 24 false positives (fsbo internal `??` / code 0 transient, all live-verified 200 — count inflated this run, see note), 5 real external 404s, 1 recurring `ohio.gov`-family geo-block. Plus 1 ambiguous (`texas.gov` root 404 from this machine) and a **real stale deploy on auction-hub**. | total failures: 34 (2 already in baseline: `solar.byownerhub.com`, `homeinspector.org/findaninspector`) | resolved since baseline: 155 (unchanged).
 
-**No real link rot** — no internal 404s, no new external rot, alias 301s + form CORS all green. Mirror-branch drift persists (~21 repos, cosmetic — see below).
+Prev run (2026-09-01) archived to `Audits/archive/link-audit-2026-09-01.md`.
+Full raw output: `buyer-hub/tools/network-audit/report.md` + `results.json` (sitting modified-but-uncommitted in the working tree).
 
-Prev run (2026-08-24) archived to `Audits/archive/link-audit-2026-08-24.md`.
-Full raw output: `buyer-hub/tools/network-audit/report.md` + `results.json`.
+> **Note on this run:** `audit.mjs` OOM-crashed on the first attempt (Node v25.8.1, "Fatal process out of memory: Zone"); re-run with `node --max-old-space-size=4096 audit.mjs` completed clean (exit 1 = new failures present). The memory pressure almost certainly drove the unusually high fsbo `??` count (24 vs. 6 on 09-01) — every one re-checked directly returned 200. Audit script/config not modified (task constraint).
 
-> **Note on this run:** the `report.md` on disk was transiently in a partial state mid-crawl (an earlier read showed 11 failures / no drift section); the authoritative completed run (exit 0, `bliwebm24`) is **7 failures + drift section present**, and that is what's triaged here.
+## ⚪ False positives — no action, all 24 live-verified 200 (24 of the 32 NEW)
 
-**Slack posting DONE this run** — Kevin explicitly asked for it in-session (overriding the 2026-07-26 standing "Slack off"). Parent + 3 thread replies posted to `#network-audit-results` (parent ts `1788266323.222339`): 🟢 allowlist `insurance.ohio.gov` + re-baseline; 🔴 flag mirror-branch drift (~21 repos, options A/B/C); ℹ️ the 6 fsbo `??` are false positives, no action.
+fsbo internal links logged `code: 0` (transient timeout under 16-way concurrency, worse this run due to the OOM/heap pressure), rendered `??` in the report — not real 404s. **All 24 re-checked directly → 200.** Sample: `/baton-rouge`, `/wichita`, `/dayton`, `/under-contract/texas`, `/under-contract/west-virginia`, `/charlotte/mint-hill`, `/dayton/beavercreek`, `/denver/arvada`, `/new-orleans/gretna`, `/tampa/palm-harbor`, `/fort-collins/loveland`, `/huntsville/athens`, `/san-diego/santee`, `/tulsa/sand-springs`, `/wichita/derby`, 3× `_next/static/chunks/.../{state}-fsbo-guide/page-*.js` assets, 2× `/{metro}/blog/{slug}`. Never in baseline, different pages each week — self-clear next run, no `--update-baseline` needed. `/under-contract/*` are the new 09-04 route ([[open-items]]) and resolve fine.
 
-## ✅ Resolved since last run (2026-08-24)
+## 🔴 Real external link rot (5 of the 32 NEW) — owning repo: fsbo, firsttimebuyer
 
-- **`landlord.byownerhub.com` fully back** — 51 pages, sitemap ✓ this run (was **1 page / NO SITEMAP** on 08-24, a stale dead-Netlify snapshot). The 08-20 DNS + CF Pages custom-domain cutover ([[open-items]]) has fully propagated; the site now crawls clean.
-- **08-24 orphan sitemap gaps closed** — buyer/divorce/estate/funeral-hub `/disclaimer` `/privacy` `/terms` no longer flagged (absent from this run's orphan list); page counts rose accordingly (buyer 54→57, divorce 56→59, estate 56→58, funeral 55→58). Confirms the same-day 08-24 fix commits (buyer `1d4ca22`, divorce `dc5b74d`, estate `ae62d2a`, funeral `5137ac1`) are deployed.
+- **fsbo `/state-requirements/`** → `eforms.com/images/2018/08/Tennessee-Assoc-of-Realtors-Purchase-Agreement.pdf` → **404**. eForms retired the old `/images/*.pdf` files. **Replacement: `https://eforms.com/purchase-agreements/tn/`** (verified 200). Check the sibling state PDFs on the same page — likely the same rot pattern for any still pointing at `eforms.com/images/`.
+- **fsbo metro pages** → 4× Redfin "recently sold" deep links → **404**: `/albany/` → `redfin.com/city/filter/property-type=house,include=sold-3mo/Albany-NY`; `/anchorage/` → same pattern `Anchorage-AK`; `/atlanta/` → `redfin.com/city/27677/GA/Atlanta/recently-sold`; `/bakersfield/` → filter pattern `Bakersfield-CA`. Redfin root + shallow `/city/{id}/{ST}/{City}` URLs return 200, but Redfin also intermittently answers 202 (bot challenge) — mixed signal. The `include=sold-3mo` filter-URL and `/recently-sold` path look like a **changed/dead Redfin URL scheme**. Only the alphabetically-first 4 metros flagged (dedupe / per-host cap in the crawler, or only some metros carry these links). **Needs:** US-browser verification, then either fix the link pattern in fsbo's metro-page template or add `www.redfin.com` to `allowlist.json` `bot_blocked_hosts`.
+- **firsttimebuyer `/missouri/first-time-buyer-guide/`** → `mohousing.com/homeownership/` → **404** (root `mohousing.com/` is 200). Missouri Housing Development Commission reorganized; `www.mhdc.com/` is 200 but `/homeownership/` 404s. **Needs a real replacement** — current MHDC first-time-homebuyer / "First Place Loan" landing page (verify before applying).
 
-## ⚪ False positives — no action needed, all live-verified (6 of the 7 NEW)
+## 🟡 Recurring geo-block — not user-facing (1 of the 32 NEW)
 
-Crawler logged status `??` (transient timeout under 16-way concurrency), not a real 404. Re-checked each directly → all **200**:
-- fsbo: `/kansas-fsbo-guide` (on `/markets/`)
-- fsbo: `/boston/framingham`, `/minneapolis/coon-rapids`, `/sarasota/venice` (suburb pages)
-- fsbo: `/_next/static/chunks/app/north-carolina-fsbo-guide/page-219512b54683b68b.js` (asset on `/north-carolina-fsbo-guide/` — page itself 200)
-- fsbo: `/dallas/blog/dallas-fort-worth-flat-fee-mls-comparison-2026` (on `/dallas/blog/`)
+- `insurance.byownerhub.com/states/ohio/` → `insurance.ohio.gov/consumers/homeowner/homeowners-insurance-guide` → 404 **from this machine**. Same `ohio.gov`-family non-US geo-block documented 08-24 & 09-01 (`ohio.gov` / `ohiodnr.gov` / `odh.ohio.gov` already in `allowlist.json`). Fine for real US visitors. **Recommendation stands (unactioned since 09-01):** add `insurance.ohio.gov` to `allowlist.json` `geo_blocked_404_hosts`, then `node audit.mjs --update-baseline`. Not done here (task must not modify audit config).
 
-Never in baseline, not really failing — different pages each week (whichever timed out), so they self-clear next run. No `--update-baseline` needed.
+## ❓ Ambiguous — verify from US (1 of the 32 NEW)
 
-## 🟡 Known geo-block — not a real user-facing break (1 of the 7 NEW)
+- `land.byownerhub.com/states/texas/` → `www.texas.gov/` **and** bare `texas.gov/` both → 404 from this machine. A state's root portal 404ing from one vantage fits the same Akamai/edge geo-discrimination pattern as `ohio.gov` — but not previously seen for Texas, so low confidence. **If geo:** allowlist `texas.gov` + `www.texas.gov`. **If genuinely dead:** land-hub's Texas page needs a real link (`https://gov.texas.gov/` or `https://www.tdhca.state.tx.us/`).
 
-- `insurance.byownerhub.com/states/ohio/` → `insurance.ohio.gov/consumers/homeowner/homeowners-insurance-guide` → 404 **from this machine**. Repeat from 08-24; cause now clear: **`insurance.ohio.gov` root AND `ohio.gov` root also 404 from here**, while a US-based web search returns the exact guide URL live with full content. Same `ohio.gov` non-US/datacenter geo-block already documented for `ohio.gov` / `ohiodnr.gov` / `odh.ohio.gov` ([[open-items]] 2026-07-13). The link is fine for real (US) visitors.
-  - **Recommendation (next interactive session):** add `insurance.ohio.gov` to `buyer-hub/tools/network-audit/allowlist.json` geo-blocked hosts so it stops surfacing, then `node audit.mjs --update-baseline`. Not done here (task must not modify audit config).
+## ⚠️ Stale deploy — auction-hub (REAL, new characterization)
 
-## ⚠️ Mirror-branch drift — ~21 repos, unchanged from 08-24 (NOT resolved)
+`auction.byownerhub.com` live homepage serves the **`main`** branch — `<title>` "AuctionHub — Buy Homes at Foreclosure Auction Without an Agent", the `%s | AuctionHub` title template, and the long meta description all match `origin/main` exactly. `origin/master` is **7 commits ahead** with the P3b/P8 SEO remediation that is **not live**: title/description shortening to SERP width, state-page content expansion (~185 → ~332 words), Organization/WebSite/CollectionPage JSON-LD, `/states` meta-description trims, and the `%s | Brand` template removal.
 
-`origin/main ≠ origin/master` on: frbo, **buyer**, commercial, firsttimebuyer, flatfee, biz, **estate**, **funeral**, mobile, lien, llc, timeshare, inspection, trust, rv, eviction, moto, str, mortgage, new-build, foreclosure, auction. Same set as 08-24 (19) plus buyer/estate/funeral, which drifted when their 08-24 orphan-sitemap fixes landed on one branch only (e.g. buyer: main=`d58fec4` has the route files, master=`1d4ca22` also has the sitemap entry — buyer-hub deploys from `master`, so the fix is live regardless).
+- Clean FF verified: `origin/main` is a strict ancestor of `origin/master` (7 commits, zero unique commits on `main`).
+- **Fix:** FF `main` up to `origin/master` (`git push origin origin/master:main` from an up-to-date clone), which pushes the SEO work live — **or**, if auction-hub actually deploys from `master` and the build is merely stale, a CF Pages "Retry deployment". Kevin should confirm auction-hub's intended production branch: `new-build-hub` has the mirror-image drift (`master` ahead by 4) yet its live site *already* serves `master`, so the deploy-branch mapping is not consistent network-wide.
 
-Per [[network-audit-automation]], `main` is the deployed branch (except the handful pinned to `master` like buyer/55plus/condo/foreclosure) and drift is cosmetic, not a live-serving problem — the resolved items above confirm the live sites are current. But the drift has now persisted across two weekly runs without self-resyncing. FF-safety (`git merge-base --is-ancestor`) not verified this pass. Worth a batch `git push origin main:master` (or the reverse per repo) in an interactive session.
+## ⚠️ Mirror-branch drift — 22 repos, unchanged, 3rd weekly run standing
+
+All 22 pairs are **clean fast-forwards** (no diverged pair). Set first appeared 08-24, essentially frozen since 09-01.
+
+- **`main` ahead / `master` lagging (18)** — deploy-from-`main`, live is current, cosmetic: frbo, commercial, str, mortgage, firsttimebuyer, flatfee, biz, estate, funeral, mobile, lien, llc, timeshare, inspection, trust, rv, eviction, moto.
+- **`master` ahead / `main` lagging (4)**: **buyer** & **foreclosure** are `master`-pinned per [[network-audit-automation]] → live current, cosmetic; **auction** → live is stale (see above); **new-build** → `master` ahead by 4 but live already serves `master`, so only the `main` branch is stale (cosmetic).
+
+Per [[network-audit-automation]] `main` is normally the deployed branch and drift is cosmetic — the resolved items below confirm live sites are current — but it has now persisted across three weekly runs without self-resyncing, and auction-hub proves the assumption isn't universal. Worth a batch resync in an interactive session (directional, per-repo — there is no single push that fixes all 22).
+
+## ✅ Resolved / still-healthy since last run (2026-09-01)
+
+- `landlord.byownerhub.com` still fully healthy — 51 pages, sitemap ✓ (recovered 09-01 after the 08-20 DNS + CF Pages cutover; stays clean).
+- 08-24 orphan-sitemap gaps stay closed — buyer 57 / divorce 59 / estate 58 / funeral 58 pages, none re-flagged.
+- Nothing *newly* resolved this run; `resolved since baseline` steady at 155.
 
 ## Per-site (this run)
 
 | domain | pages | sitemap | bad internal |
 |---|---|---|---|
 | byownerhub.com | 6 | ✓ | 0 |
-| fsbo.byownerhub.com | 1228 | ✓ | 6 (all false positives, see above) |
+| fsbo.byownerhub.com | 1281 | ✓ | 24 (all false positives — transient `??`, live-verified 200) |
 | car.byownerhub.com | 67 | ✓ | 0 |
 | landlord.byownerhub.com | 51 | ✓ | 0 |
 | rent.byownerhub.com | 54 | ✓ | 0 |
@@ -78,18 +88,20 @@ Per [[network-audit-automation]], `main` is the deployed branch (except the hand
 | llc.byownerhub.com | 54 | ✓ | 0 |
 | timeshare.byownerhub.com | 56 | ✓ | 0 |
 | contractor.byownerhub.com | 56 | ✓ | 0 |
-| inspection.byownerhub.com | 56 | ✓ | 0 |
+| inspection.byownerhub.com | 56 | ✓ | 1 (known `homeinspector.org/findaninspector` 404, in baseline) |
 | trust.byownerhub.com | 56 | ✓ | 0 |
 | relocation.byownerhub.com | 55 | ✓ | 0 |
 | rv.byownerhub.com | 55 | ✓ | 0 |
 | eviction.byownerhub.com | 56 | ✓ | 0 |
 | moto.byownerhub.com | 56 | ✓ | 0 |
 | trademark.byownerhub.com | 55 | ✓ | 0 |
-| str.byownerhub.com | 67 | ✓ | 1 (known dead solar.byownerhub.com link, tracked, unchanged) |
+| str.byownerhub.com | 67 | ✓ | 1 (known dead `solar.byownerhub.com` link, in baseline, unchanged) |
 | mortgage.byownerhub.com | 56 | ✓ | 0 |
 | new-build.byownerhub.com | 51 | ✓ | 0 |
 | foreclosure.byownerhub.com | 51 | ✓ | 0 |
 | auction.byownerhub.com | 52 | ✓ | 0 |
+
+*(inspection shows 1 bad-internal in the report table but the failure is the external `homeinspector.org` link — both baseline items.)*
 
 ## Alias 301s — all ✅
 flatfee → flatfeemls, newbuild → new-build, frbo → rent.
@@ -97,9 +109,9 @@ flatfee → flatfeemls, newbuild → new-build, frbo → rent.
 ## Form CORS (fsbo /api/subscribe) — all ✅
 biz, estate, str, eviction, moto façade origins all return 204 with correct ACAO.
 
-## ✅ Resolved since baseline (155) — unchanged from 08-24
+## ✅ Resolved since baseline (155) — unchanged from 09-01
 
-Large cleanup from the network-wide SEO remediation project — mostly `hud.gov` state-page 404s (the `/states/x_y` → `/states/x-y` reorg, now fully cleared), vital-records/boating/court-directory link rot across ~20 states, and the condo/fsbo/investor orphan-sitemap fixes.
+Large cleanup from the network-wide SEO remediation — mostly `hud.gov` state-page 404s (`/states/x_y` → `/states/x-y`), vital-records/boating/court-directory rot across ~20 states, and the condo/fsbo/investor orphan-sitemap fixes.
 
 ---
-*Slack integration posted this run to `#network-audit-results` — Kevin re-enabled it for this run in-session (thread `1788266323.222339`). The 2026-07-26 network-wide "Slack off" no longer applies to this channel.*
+*Slack: attempted post to `#network-audit-results` this run — see session output for whether the connector was authenticated. Proposals for Kevin: (1) 🟢 FF auction-hub `main` → `origin/master` (verified clean FF, pushes P8 SEO live); (2) 🟢 add `insurance.ohio.gov` to `allowlist.json` geo-block list + re-baseline; (3) 🔴 replace the dead eForms TN PDF link with `eforms.com/purchase-agreements/tn/` + sweep siblings; (4) 🔴 Redfin recently-sold link pattern — fix or allowlist; (5) 🔴 mohousing.com/homeownership → current MHDC page; (6) 🔴 mirror-branch drift batch resync (22 repos, directional).*
