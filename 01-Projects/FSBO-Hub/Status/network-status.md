@@ -1,12 +1,14 @@
 ---
 type: status
 project: FSBO-Hub
-last-verified: 2026-09-10
+last-verified: 2026-09-11
 ---
 
 # ByOwnerHub Network — Build Status
 
-*Last updated: 2026-09-10 — vault-sync: **no repo activity anywhere in the network since 2026-09-05.** Every repo HEAD unchanged; `git log --all --since=2026-09-05` is empty network-wide. The 2026-09-07 weekly link audit ran (findings in [[open-items]]) and buyer-hub's `tools/network-audit/{report.md,results.json}` working-tree diff now holds that 09-07 run (not the 09-01 run the 09-05 note named). **Correction this run:** the long-carried "unrotated plaintext PAT in `fsbo-freemium-sandbox/deploy_freemium_branch.ps1`" item is stale — that file was **rewritten 2026-08-26**; the hardcoded `ghp_…` PAT is gone, it now dot-sources an encrypted PowerShell SecretManagement vault (`C:\Users\kevc_\Documents\ops-scripts\_secrets.ps1`, `$env:GH_TOKEN`). Part of a 2026-08-25/26 credential-hygiene overhaul not previously logged here — see the note below and [[open-items]]. Hosting/deploy topology unchanged since 07-12. Still open: `freemium-wip` 11 unpushed (~5 weeks); provider-side rotation of the 9 "burned" tokens shows pending in the ops-scripts README (unverifiable from here); mirror-branch drift ~22 repos. See [[unpushed-changes]], [[open-items]].*
+*Verified current as of 2026-09-11 — vault-sync re-run: still no repo activity anywhere in the network since 2026-09-05 (`git log --all --since=2026-09-10` empty across every repo). All four key HEADs unchanged: fsbo-hub `main` `e659fd1`, fsbo-freemium-sandbox `master` `4bf79a7`, fsbo-staging `master` `cb86a99`, car-by-owner `main` `ba17a8d`. Only diffs are the same two already-tracked ones (buyer-hub's `tools/network-audit/{report.md,results.json}`, still the 09-07 run, mtime unchanged; fsbo-freemium-sandbox's two untracked deploy scripts, unchanged). `freemium-wip` still 11 unpushed; mirror-branch drift, local-clone staleness (funeral-hub -7, investor-hub -6, landlord-hub -20) all unchanged.*
+
+*Previously: 2026-09-10 — vault-sync: **no repo activity anywhere in the network since 2026-09-05.** Every repo HEAD unchanged; `git log --all --since=2026-09-05` is empty network-wide. The 2026-09-07 weekly link audit ran (findings in [[open-items]]) and buyer-hub's `tools/network-audit/{report.md,results.json}` working-tree diff now holds that 09-07 run (not the 09-01 run the 09-05 note named). **Correction this run:** the long-carried "unrotated plaintext PAT in `fsbo-freemium-sandbox/deploy_freemium_branch.ps1`" item is stale — that file was **rewritten 2026-08-26**; the hardcoded `ghp_…` PAT is gone, it now dot-sources an encrypted PowerShell SecretManagement vault (`C:\Users\kevc_\Documents\ops-scripts\_secrets.ps1`, `$env:GH_TOKEN`). Part of a 2026-08-25/26 credential-hygiene overhaul not previously logged here — see the note below and [[open-items]]. Hosting/deploy topology unchanged since 07-12. Still open: `freemium-wip` 11 unpushed (~5 weeks); provider-side rotation of the 9 "burned" tokens shows pending in the ops-scripts README (unverifiable from here); mirror-branch drift ~22 repos. See [[unpushed-changes]], [[open-items]].*
 
 ---
 
