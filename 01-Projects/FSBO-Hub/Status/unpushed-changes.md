@@ -1,12 +1,14 @@
 ---
 type: status
 project: FSBO-Hub
-last-verified: 2026-09-11
+last-verified: 2026-09-14
 ---
 
 # Network — Unpushed Changes
 
-*Verified current as of 2026-09-11 — re-checked, still no repo activity network-wide since 2026-09-05; nothing new committed or unpushed.*
+*Verified current as of 2026-09-14 — re-checked (full 44-directory sweep, `git log --all --since=2026-09-11` + `git status --short` per repo), still no repo activity network-wide since 2026-09-05; nothing new committed or unpushed. Same two known diffs only: buyer-hub's tracked-but-modified audit files (still the 09-07 run) and fsbo-freemium-sandbox's two untracked (credential-free) deploy scripts.*
+
+*Previously: 2026-09-11 — re-checked, still no repo activity network-wide since 2026-09-05; nothing new committed or unpushed.*
 
 *Previously: 2026-09-10 — no repo activity network-wide since 2026-09-05; nothing new committed or unpushed. Correction: fsbo-freemium-sandbox's untracked `deploy_freemium_branch.ps1` no longer holds a plaintext PAT (rewritten 2026-08-26 to read from an encrypted secrets vault) — see below and [[open-items]].*
 
