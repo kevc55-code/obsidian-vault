@@ -1,12 +1,14 @@
 ---
 type: status
 project: FSBO-Hub
-last-verified: 2026-09-14
+last-verified: 2026-09-18
 ---
 
 # Network — Unpushed Changes
 
-*Verified current as of 2026-09-14 — re-checked (full 44-directory sweep, `git log --all --since=2026-09-11` + `git status --short` per repo), still no repo activity network-wide since 2026-09-05; nothing new committed or unpushed. Same two known diffs only: buyer-hub's tracked-but-modified audit files (still the 09-07 run) and fsbo-freemium-sandbox's two untracked (credential-free) deploy scripts.*
+*Verified current as of 2026-09-18 — re-checked (full 44-directory sweep, `git log --all --since=2026-09-14` + `git status --short` per repo). Both fsbo product repos moved (4 commits each, 2026-09-14→17, all pushed — see [[network-status]], [[SESSION-2026-09-17]]) but neither has any unpushed or uncommitted work now: `fsbo-freemium-sandbox` `master` at `600a4b6`, `fsbo-staging` `master` at `b8c161d`, both in sync with origin. Same two known diffs persist unchanged: buyer-hub's tracked-but-modified audit files (still the 09-07 run) and fsbo-freemium-sandbox's two untracked (credential-free) deploy scripts.*
+
+*Previously: 2026-09-14 — re-checked (full 44-directory sweep, `git log --all --since=2026-09-11` + `git status --short` per repo), still no repo activity network-wide since 2026-09-05; nothing new committed or unpushed. Same two known diffs only: buyer-hub's tracked-but-modified audit files (still the 09-07 run) and fsbo-freemium-sandbox's two untracked (credential-free) deploy scripts.*
 
 *Previously: 2026-09-11 — re-checked, still no repo activity network-wide since 2026-09-05; nothing new committed or unpushed.*
 
@@ -16,11 +18,11 @@ last-verified: 2026-09-14
 
 ## 🔴 Currently unpushed / uncommitted
 
-**fsbo-hub `freemium-wip`** — still 11 commits ahead of `origin/freemium-wip`, unchanged since 08-05 (same commits: `831a09f`, `7c82d32`, `01e822c`, `a953599`, `bd6054d`, `588daec`, `707b11c`, `ef035bb`, `0dbf67d` merge, `d630097`, `721c175`). **Deploy-readiness still not re-verified** — the 07-12 check now predates ~8 weeks and nine separate vault-check sessions. Likely superseded in practice by production's real Stripe/freemium build on `fsbo-freemium-sandbox` — see [[open-items]] item 8.
+**fsbo-hub `freemium-wip`** — still 11 commits ahead of `origin/freemium-wip`, unchanged since 08-05 (same commits: `831a09f`, `7c82d32`, `01e822c`, `a953599`, `bd6054d`, `588daec`, `707b11c`, `ef035bb`, `0dbf67d` merge, `d630097`, `721c175`). **Deploy-readiness still not re-verified** — the 07-12 check now predates ~10 weeks. Likely superseded in practice by production's real Stripe/freemium build on `fsbo-freemium-sandbox` — see [[open-items]] item 8.
 
-**fsbo-freemium-sandbox** — two untracked deploy scripts remain (`deploy.bat`, `deploy_freemium_branch.ps1`). `deploy_freemium_branch.ps1` was **rewritten 2026-08-26**: the hardcoded `ghp_…` PAT is removed, it now dot-sources `…\ops-scripts\_secrets.ps1` and reads `$env:GH_TOKEN` from an encrypted SecretManagement vault. `deploy.bat` never held a token. Not a plaintext-credential exposure anymore; **provider-side rotation of the 9 "burned" tokens still shows pending** in the ops-scripts README (unverifiable from here) — see [[open-items]], [[vault-credential-exposure]]. `master` itself is fully pushed and in sync with origin at **`4bf79a7`** — one commit past the 09-03/04 sprint's `22b2643`: `feat(nav): surface the deadline tracker from the homepage and nav` (adds `/under-contract` state index, homepage card, nav links, sitemap entry — see [[network-status]]).
+**fsbo-freemium-sandbox** — two untracked deploy scripts remain (`deploy.bat`, `deploy_freemium_branch.ps1`). `deploy_freemium_branch.ps1` was **rewritten 2026-08-26**: the hardcoded `ghp_…` PAT is removed, it now dot-sources `…\ops-scripts\_secrets.ps1` and reads `$env:GH_TOKEN` from an encrypted SecretManagement vault. `deploy.bat` never held a token. Not a plaintext-credential exposure anymore; **provider-side rotation of the 9 "burned" tokens still shows pending** in the ops-scripts README (unverifiable from here) — see [[open-items]], [[vault-credential-exposure]]. `master` itself is fully pushed and in sync with origin at **`600a4b6`** — four commits past the 09-04 sprint's `4bf79a7`: the 2026-09-14→17 GSC-Coverage sprint (sitemap redirect-bug fix, suburb-page pruning, positioning copy change, new commission-index page — see [[network-status]], [[SESSION-2026-09-17]]).
 
-**fsbo-staging** — `master` fully pushed / in sync with origin at **`cb86a99`** — independently re-built the same nav commit on top of `6441f7e` (same message, different hash). Level with production. No uncommitted work.
+**fsbo-staging** — `master` fully pushed / in sync with origin at **`b8c161d`** — independently re-built the same 4-commit sprint on top of `cb86a99` (same messages, different hashes). Level with production. No uncommitted work.
 
 ## ✅ Resolved 2026-09-02
 

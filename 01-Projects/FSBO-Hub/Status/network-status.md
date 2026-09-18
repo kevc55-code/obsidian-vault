@@ -1,12 +1,14 @@
 ---
 type: status
 project: FSBO-Hub
-last-verified: 2026-09-14
+last-verified: 2026-09-18
 ---
 
 # ByOwnerHub Network — Build Status
 
-*Verified current as of 2026-09-14 — vault-sync re-run: still no repo activity anywhere in the network since 2026-09-05 (`git log --all --since=2026-09-11` empty across every repo checked, full 44-directory sweep). All four key HEADs unchanged: fsbo-hub `main` `e659fd1`, fsbo-freemium-sandbox `master` `4bf79a7`, fsbo-staging `master` `cb86a99`, car-by-owner `main` `ba17a8d`. Only diffs are the same two already-tracked ones (buyer-hub's `tools/network-audit/{report.md,results.json}`, still the 09-07 run, mtime unchanged; fsbo-freemium-sandbox's two untracked deploy scripts, unchanged). `freemium-wip` still 11 unpushed; mirror-branch drift, local-clone staleness (funeral-hub -7, investor-hub -6, landlord-hub -20) all unchanged. Nine-day quiet window now (2026-09-05 → 2026-09-14) — the longest stretch of zero network commits logged in this vault to date.*
+*Verified current as of 2026-09-18 — vault-sync: the nine-day quiet window ended. Both fsbo product repos got a 4-commit GSC-Coverage-driven SEO sprint, 2026-09-14→17, all pushed, dev-first pattern intact (same messages, different hashes). `fsbo-freemium-sandbox` `master` `4bf79a7` → `600a4b6`; `fsbo-staging` `master` `cb86a99` → `b8c161d`. No other repo in a full 44-directory sweep moved. Full detail in [[SESSION-2026-09-17]] and the state-of-union entry directly below.*
+
+*Previously: 2026-09-14 — vault-sync re-run: still no repo activity anywhere in the network since 2026-09-05 (`git log --all --since=2026-09-11` empty across every repo checked, full 44-directory sweep). All four key HEADs unchanged: fsbo-hub `main` `e659fd1`, fsbo-freemium-sandbox `master` `4bf79a7`, fsbo-staging `master` `cb86a99`, car-by-owner `main` `ba17a8d`. Only diffs are the same two already-tracked ones (buyer-hub's `tools/network-audit/{report.md,results.json}`, still the 09-07 run, mtime unchanged; fsbo-freemium-sandbox's two untracked deploy scripts, unchanged). `freemium-wip` still 11 unpushed; mirror-branch drift, local-clone staleness (funeral-hub -7, investor-hub -6, landlord-hub -20) all unchanged. Nine-day quiet window now (2026-09-05 → 2026-09-14) — the longest stretch of zero network commits logged in this vault to date.*
 
 *Previously: 2026-09-11 — vault-sync re-run: still no repo activity anywhere in the network since 2026-09-05 (`git log --all --since=2026-09-10` empty across every repo). All four key HEADs unchanged: fsbo-hub `main` `e659fd1`, fsbo-freemium-sandbox `master` `4bf79a7`, fsbo-staging `master` `cb86a99`, car-by-owner `main` `ba17a8d`. Only diffs are the same two already-tracked ones (buyer-hub's `tools/network-audit/{report.md,results.json}`, still the 09-07 run, mtime unchanged; fsbo-freemium-sandbox's two untracked deploy scripts, unchanged). `freemium-wip` still 11 unpushed; mirror-branch drift, local-clone staleness (funeral-hub -7, investor-hub -6, landlord-hub -20) all unchanged.*
 
@@ -14,7 +16,18 @@ last-verified: 2026-09-14
 
 ---
 
-## 🟢 Current State of Union (2026-09-10)
+## 🟢 Current State of Union (2026-09-17)
+
+- **GSC-Coverage-driven SEO sprint, both fsbo product repos, all pushed.** Production (`fsbo-freemium-sandbox`) `master` `4bf79a7` → `600a4b6`, 4 commits (2026-09-14 through 09-17); `fsbo-staging` independently re-built the same set (`cb86a99` → `b8c161d`, same messages, different hashes). Triggered by a 2026-09-14 Search Console Coverage export the user pulled and read closely — not a scheduled audit. Full detail: [[SESSION-2026-09-17]].
+- **Two real bugs found and fixed.** (1) The sitemap had been serving 1,281 redirect URLs, not canonical ones — trailing-slash mismatch against this app's `trailingSlash: false` — which is the likely reason Google stopped re-reading it after 7 July (69 days stale) while every sibling CF Pages site gets re-read every few days. Rebuilt as a sitemap index over six section files, with `lastmod` added to ~1,050 URLs that never had one. (2) 535 of 751 suburb pages (the ones with zero GSC impressions *and* zero clicks over 91 days) are now `noindex,follow` and out of the sitemap — pages stay live/linked, just stop competing for a crawl allowance Google is visibly rationing (43 metro pages crawled-and-declined, 25 state guides never crawled). This is the resolution of the long-carried [[fsbo-suburb-thin-content]] item: the 07-19 fix was enrichment, this is pruning on top of it, because enrichment alone hadn't moved the indexing numbers.
+- **Plus a deliberate positioning change** (not a bug fix): homepage H1/argument reframed from "without an agent" (an absence) to "pay for the parts you need" (a bundle you can unbundle) — new `BundleBreakdown` component sits above the savings calculator. Titles/meta/OG deliberately kept the old "Without an Agent" search phrase; only the on-page argument changed.
+- **And a new public page**: `/commission-index` — agent commission cost per metro expressed in months of local median income, 94 US metros, Census ACS-sourced, CC-BY/free-to-republish, built as press/backlink bait with a pitch-angles doc alongside it (not yet confirmed sent).
+- **fsbo-hub `main`, car-by-owner** — no change, unchanged since 09-02, both in sync, working trees clean.
+- **Unchanged:** `freemium-wip` still 11 commits unpushed (now ~6 weeks); `fsbo-freemium-sandbox`'s two untracked deploy scripts (credential-free since 08-26); buyer-hub's `tools/network-audit/{report.md,results.json}` still holding the 09-07 audit run uncommitted (no new weekly audit ran this window); mirror-branch drift and local-clone staleness unchanged. No other repo moved.
+
+---
+
+## 🟢 Previous State of Union (2026-09-10)
 
 - **Quiet window — nothing shipped.** No commits on any branch of any network repo since the 2026-09-04 evening nav commit. fsbo-freemium-sandbox `master` `4bf79a7`, fsbo-staging `master` `cb86a99`, fsbo-hub `main` `e659fd1`, car-by-owner `main` `ba17a8d` — all in sync with origin, all working trees clean.
 - **Only working-tree changes network-wide** are the two known ones: buyer-hub `tools/network-audit/{report.md,results.json}` (tracked; now holding the **2026-09-07** weekly-audit run as an uncommitted modification — mtime 2026-09-07 14:49), and fsbo-freemium-sandbox's two untracked deploy scripts (`deploy.bat`, `deploy_freemium_branch.ps1`).
