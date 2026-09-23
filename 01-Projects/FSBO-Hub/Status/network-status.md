@@ -1,12 +1,14 @@
 ---
 type: status
 project: FSBO-Hub
-last-verified: 2026-09-18
+last-verified: 2026-09-22
 ---
 
 # ByOwnerHub Network — Build Status
 
-*Verified current as of 2026-09-18 — vault-sync: the nine-day quiet window ended. Both fsbo product repos got a 4-commit GSC-Coverage-driven SEO sprint, 2026-09-14→17, all pushed, dev-first pattern intact (same messages, different hashes). `fsbo-freemium-sandbox` `master` `4bf79a7` → `600a4b6`; `fsbo-staging` `master` `cb86a99` → `b8c161d`. No other repo in a full 44-directory sweep moved. Full detail in [[SESSION-2026-09-17]] and the state-of-union entry directly below.*
+*Verified current as of 2026-09-22 — vault-sync: no repo activity anywhere in the network since the 2026-09-17 GSC sprint (`git log --all --since=2026-09-18` empty across all 42 repos checked, full sweep, excludes `equiconnected`). The only change this window is a fresh **weekly network audit that ran 2026-09-22** (`buyer-hub/tools/network-audit/report.md` + `results.json`, uncommitted working-tree modification, superseding the 09-07 run referenced below): 7 "new" failures reported, all recurring/already-tracked (TN eForms PDF, mohousing.com, `dph.illinois.gov`, `idoi.illinois.gov` — now flagged a 4th+ time, `insurance.ohio.gov` geo-block, plus 2 fsbo internal `??` transients) — none newly discovered. The 09-07 run's 4× Redfin deep-link 404s and the `texas.gov` root 404 no longer appear as failures (self-resolved/transient). Mirror-branch drift unchanged at 22 repos, same set. See [[open-items]].*
+
+*Previously: 2026-09-18 — vault-sync: the nine-day quiet window ended. Both fsbo product repos got a 4-commit GSC-Coverage-driven SEO sprint, 2026-09-14→17, all pushed, dev-first pattern intact (same messages, different hashes). `fsbo-freemium-sandbox` `master` `4bf79a7` → `600a4b6`; `fsbo-staging` `master` `cb86a99` → `b8c161d`. No other repo in a full 44-directory sweep moved. Full detail in [[SESSION-2026-09-17]] and the state-of-union entry directly below.*
 
 *Previously: 2026-09-14 — vault-sync re-run: still no repo activity anywhere in the network since 2026-09-05 (`git log --all --since=2026-09-11` empty across every repo checked, full 44-directory sweep). All four key HEADs unchanged: fsbo-hub `main` `e659fd1`, fsbo-freemium-sandbox `master` `4bf79a7`, fsbo-staging `master` `cb86a99`, car-by-owner `main` `ba17a8d`. Only diffs are the same two already-tracked ones (buyer-hub's `tools/network-audit/{report.md,results.json}`, still the 09-07 run, mtime unchanged; fsbo-freemium-sandbox's two untracked deploy scripts, unchanged). `freemium-wip` still 11 unpushed; mirror-branch drift, local-clone staleness (funeral-hub -7, investor-hub -6, landlord-hub -20) all unchanged. Nine-day quiet window now (2026-09-05 → 2026-09-14) — the longest stretch of zero network commits logged in this vault to date.*
 

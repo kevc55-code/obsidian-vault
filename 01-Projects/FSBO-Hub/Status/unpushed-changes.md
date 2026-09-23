@@ -1,12 +1,14 @@
 ---
 type: status
 project: FSBO-Hub
-last-verified: 2026-09-18
+last-verified: 2026-09-22
 ---
 
 # Network — Unpushed Changes
 
-*Verified current as of 2026-09-18 — re-checked (full 44-directory sweep, `git log --all --since=2026-09-14` + `git status --short` per repo). Both fsbo product repos moved (4 commits each, 2026-09-14→17, all pushed — see [[network-status]], [[SESSION-2026-09-17]]) but neither has any unpushed or uncommitted work now: `fsbo-freemium-sandbox` `master` at `600a4b6`, `fsbo-staging` `master` at `b8c161d`, both in sync with origin. Same two known diffs persist unchanged: buyer-hub's tracked-but-modified audit files (still the 09-07 run) and fsbo-freemium-sandbox's two untracked (credential-free) deploy scripts.*
+*Verified current as of 2026-09-22 — re-checked (full 42-directory sweep excluding `equiconnected`/`_archived`, `git log --all --since=2026-09-18` + `git status --short` per repo). No repo activity anywhere since the 09-17 GSC sprint. Same two known diffs persist, one refreshed: buyer-hub's tracked-but-modified audit files now hold the **2026-09-22** weekly run (mtime confirmed, superseding the 09-07 run — see [[open-items]], [[network-status]]), and fsbo-freemium-sandbox's two untracked (credential-free) deploy scripts, unchanged.*
+
+*Previously: 2026-09-18 — re-checked (full 44-directory sweep, `git log --all --since=2026-09-14` + `git status --short` per repo). Both fsbo product repos moved (4 commits each, 2026-09-14→17, all pushed — see [[network-status]], [[SESSION-2026-09-17]]) but neither has any unpushed or uncommitted work now: `fsbo-freemium-sandbox` `master` at `600a4b6`, `fsbo-staging` `master` at `b8c161d`, both in sync with origin. Same two known diffs persist unchanged: buyer-hub's tracked-but-modified audit files (still the 09-07 run) and fsbo-freemium-sandbox's two untracked (credential-free) deploy scripts.*
 
 *Previously: 2026-09-14 — re-checked (full 44-directory sweep, `git log --all --since=2026-09-11` + `git status --short` per repo), still no repo activity network-wide since 2026-09-05; nothing new committed or unpushed. Same two known diffs only: buyer-hub's tracked-but-modified audit files (still the 09-07 run) and fsbo-freemium-sandbox's two untracked (credential-free) deploy scripts.*
 
